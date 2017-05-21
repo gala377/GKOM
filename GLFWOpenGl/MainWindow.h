@@ -6,11 +6,12 @@
 class MainWindow
 {
 public:
+	GLFWwindow* window;
+
 	MainWindow(int width, int height, std::string title);
 	~MainWindow();
 private:
-	GLFWwindow* window;
-
-
+	GLFWwindow* createWindow(int width, int height, std::string title) throw(std::runtime_error);
+	void setViewport(GLFWwindow* w);
 };
 
