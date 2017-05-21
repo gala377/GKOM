@@ -1,7 +1,7 @@
 #include "MainWindow.h"
 
 
-MainWindow::MainWindow(int width, int height, const char* title)
+MainWindow::MainWindow(GLuint width, GLuint height, const char* title)
 {
 #ifdef DEBUG
 	std::cout << "Creating new window: MainWindow.MainWindow\n";
@@ -19,7 +19,7 @@ MainWindow::~MainWindow()
 {
 }
 
-GLFWwindow* MainWindow::createWindow(int width, int height, const char* title)
+GLFWwindow* MainWindow::createWindow(GLuint width, GLuint height, const char* title)
 {
 	GLFWwindow* w = glfwCreateWindow(width, height, title, nullptr, nullptr);
 	if (w == nullptr)

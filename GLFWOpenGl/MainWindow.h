@@ -9,11 +9,11 @@ class MainWindow
 public:
 	GLFWwindow* window;
 
-	MainWindow(int width = 800, int height = 600, const char* title = "");
+	MainWindow(GLuint width = 800, GLuint height = 600, const char* title = "");
 	~MainWindow();
 	void setViewport();
 private:
-	GLFWwindow* createWindow(int width, int height, const char* title) throw(std::runtime_error);
+	GLFWwindow* createWindow(GLuint width, GLuint height, const char* title) throw(std::runtime_error);
 	void setViewport(GLFWwindow* w);
 };
 

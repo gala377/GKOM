@@ -15,5 +15,6 @@ private:
 	MainWindow* screen;
 	void initGLFW();
 	void initGLEW() throw( std::runtime_error );
+	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
 };
 
