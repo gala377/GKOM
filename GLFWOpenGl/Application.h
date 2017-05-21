@@ -3,8 +3,8 @@
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include "MainWindow.h"
 #include "MainLayout.h"
+
 class Application
 {
 public:
@@ -12,7 +12,9 @@ public:
 	~Application();
 
 	void Run();
+	static int assignVAO();
 private:
+	static int VAOcount;
 	MainWindow* screen;
 	MainLayout* layout;
 

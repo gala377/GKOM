@@ -1,6 +1,8 @@
 #include "Application.h"
 #include "Objects\Triangle2D.h"
 
+int Application::VAOcount = 0;
+
 Application::Application()
 {
 	try {
@@ -58,6 +60,7 @@ void Application::Run()
 	Triangle2D* tra2D = new Triangle2D;
 	tra2D->defineVertertices(0.0f, 0.5f, -0.5f, -0.5f, 0.5f, -0.5f);
 	layout->addObject(tra2D);
+	tra2D->compileShaders("Text.vert", "basiccolor.frag");
 
 	while (!glfwWindowShouldClose(screen->window))
 	{
@@ -78,4 +81,10 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
+}
+
+int Application::assignVAO()
+{
+	++VAOcount;
+	return VAOcount;
 }

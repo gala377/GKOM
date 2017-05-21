@@ -7,6 +7,7 @@ public:
 	Triangle2D();
 	~Triangle2D();
 	void defineVertertices(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat x3, GLfloat y3);
+	void bindVAO();
 	void Draw(GLuint VBO);
 private:
 	GLfloat* vertices;
