@@ -7,18 +7,18 @@ MainLayout::MainLayout(MainWindow* window) : parent(window)
 
 void MainLayout::Draw()
 {
-	for (RawObject obj : objects)
-		obj.Draw(parent->getVBO());
-	for (Layout lay : layouts)
-		lay.Draw(parent);
+	for (RawObject* obj : objects)
+		obj->Draw(parent->getVBO());
+	for (Layout* lay : layouts)
+		lay->Draw(parent);
 }
 
-void MainLayout::addLayout(Layout lay)
+void MainLayout::addLayout(Layout* lay)
 {
 	layouts.push_back(lay);
 }
 
-void MainLayout::addObject(RawObject obj)
+void MainLayout::addObject(RawObject* obj)
 {
 	objects.push_back(obj);
 }

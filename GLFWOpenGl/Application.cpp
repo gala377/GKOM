@@ -1,5 +1,5 @@
 #include "Application.h"
-
+#include "Objects\Triangle2D.h"
 
 Application::Application()
 {
@@ -55,6 +55,10 @@ void Application::initGLEW()
 
 void Application::Run()
 {
+	Triangle2D* tra2D = new Triangle2D;
+	tra2D->defineVertertices(0.0f, 0.5f, -0.5f, -0.5f, 0.5f, -0.5f);
+	layout->addObject(tra2D);
+
 	while (!glfwWindowShouldClose(screen->window))
 	{
 		glfwPollEvents();

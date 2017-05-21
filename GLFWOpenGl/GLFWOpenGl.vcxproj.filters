@@ -36,6 +36,9 @@
     <ClCompile Include="Objects\Triangle2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="shprogram.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainWindow.h">
@@ -56,8 +59,23 @@
     <ClInclude Include="Objects\Triangle2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shprogram.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="Text.vert">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="basiccolor.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GLFWOpenGl.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

@@ -152,6 +152,7 @@
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Objects\Triangle2D.cpp" />
     <ClCompile Include="RawObject.cpp" />
+    <ClCompile Include="shprogram.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -160,9 +161,16 @@
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Objects\Triangle2D.h" />
     <ClInclude Include="RawObject.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="shprogram.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="basiccolor.frag" />
     <None Include="ClassDiagram.cd" />
+    <None Include="Text.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GLFWOpenGl.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
