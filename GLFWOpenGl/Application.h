@@ -4,6 +4,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "MainWindow.h"
+#include "MainLayout.h"
 class Application
 {
 public:
@@ -13,6 +14,8 @@ public:
 	void Run();
 private:
 	MainWindow* screen;
+	MainLayout* layout;
+
 	void initGLFW();
 	void initGLEW() throw( std::runtime_error );
 	void renderAll();

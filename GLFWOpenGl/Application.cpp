@@ -11,6 +11,8 @@ Application::Application()
 		initGLEW();
 		
 		glfwSetKeyCallback(screen->window, key_callback);
+		screen->setVBO();
+		layout = new MainLayout(screen);
 	}
 	catch (std::runtime_error e) {
 		std::cout << "Runtime Exception in Application.Application " << e.what() << "\n";
@@ -26,6 +28,7 @@ Application::~Application()
 {
 	glfwTerminate();
 	delete screen;
+	delete layout;
 }
 
 void Application::initGLFW()
@@ -64,6 +67,7 @@ void Application::renderAll()
 {
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
+	layout->Draw();
 };
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
