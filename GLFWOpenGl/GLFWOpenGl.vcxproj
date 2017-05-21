@@ -150,16 +150,16 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainLayout.cpp" />
     <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="Objects\Triangle2D.cpp" />
     <ClCompile Include="RawObject.cpp" />
-    <ClCompile Include="Triangle2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="Layout.h" />
     <ClInclude Include="MainLayout.h" />
     <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="Objects\Triangle2D.h" />
     <ClInclude Include="RawObject.h" />
-    <ClInclude Include="Triangle2D.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

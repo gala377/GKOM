@@ -6,7 +6,6 @@ RawObject::RawObject()
 {
 }
 
-
 RawObject::~RawObject()
 {
 }

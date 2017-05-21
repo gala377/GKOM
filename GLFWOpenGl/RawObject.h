@@ -5,6 +5,6 @@ class RawObject
 public:
 	RawObject();
 	~RawObject();
-	void Draw(GLuint VBO);
+	virtual void Draw(GLuint VBO);
 };
 
