@@ -153,6 +153,7 @@
     <ClCompile Include="Objects\Triangle2D.cpp" />
     <ClCompile Include="RawObject.cpp" />
     <ClCompile Include="shprogram.cpp" />
+    <ClCompile Include="WindowLayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="RawObject.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="shprogram.h" />
+    <ClInclude Include="WindowLayer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="basiccolor.frag" />

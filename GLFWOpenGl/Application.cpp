@@ -57,10 +57,12 @@ void Application::initGLEW()
 
 void Application::Run()
 {
-	Triangle2D* tra2D = new Triangle2D;
-	tra2D->defineVertertices(0.0f, 0.5f, -0.5f, -0.5f, 0.5f, -0.5f);
+
+
+	Triangle2D* tra2D2 = new Triangle2D(-1, -1, -1, 0, 0, 0, "Text.vert", "basiccolor.frag", screen->getVBO());
+	layout->addObject(tra2D2);
+	Triangle2D* tra2D = new Triangle2D(-0.5, -0.5, 0, 0.5, 0.5, -0.5, "Text.vert", "basiccolor.frag", screen->getVBO());
 	layout->addObject(tra2D);
-	tra2D->compileShaders("Text.vert", "basiccolor.frag");
 
 	while (!glfwWindowShouldClose(screen->window))
 	{
