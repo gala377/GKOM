@@ -4,6 +4,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "MainLayout.h"
+#include "Camera.h"
 
 class Application
 {
@@ -16,6 +17,7 @@ private:
 	static int VAOcount;
 	MainWindow* screen;
 	MainLayout* layout;
+	Camera* camera;
 
 	void initGLFW();
 	void initGLEW() throw( std::runtime_error );

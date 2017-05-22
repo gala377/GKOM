@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "Objects\Triangle2D.h"
 #include "Rectagular2D.h"
+#include "Camera.h"
 
 int Application::VAOcount = 0;
 
@@ -9,6 +10,7 @@ Application::Application()
 	try {
 		initGLFW();
 		screen = new MainWindow(1280, 720, "Test window");
+		camera = &mainCamera;
 		glfwMakeContextCurrent(screen->window);
 		screen->setViewport();
 		initGLEW();
@@ -26,11 +28,13 @@ Application::Application()
 	}
 }
 
+
 Application::~Application()
 {
 	glfwTerminate();
 	delete screen;
 	delete layout;
+	delete camera;
 }
 
 void Application::initGLFW()
@@ -62,10 +66,13 @@ void Application::Run()
 	Rectangular2D* rec2D = new Rectangular2D(1,1, 1,0, 0,0, 0, 1, "Text.vert", "basiccolor.frag");
 	layout->addObject(rec2D);
 
-	rec2D->rotate(75, 0, 0, 1);
+	//rec2D->rotate(-55, 1, 0, 0);
+
 
 	while (!glfwWindowShouldClose(screen->window))
 	{
+
+
 		glfwPollEvents();
 		renderAll();
 		glfwSwapBuffers(screen->window);
