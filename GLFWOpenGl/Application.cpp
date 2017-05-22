@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "Objects\Triangle2D.h"
+#include "Rectagular2D.h"
 
 int Application::VAOcount = 0;
 
@@ -13,7 +14,6 @@ Application::Application()
 		initGLEW();
 		
 		glfwSetKeyCallback(screen->window, key_callback);
-		screen->setVBO();
 		layout = new MainLayout(screen);
 	}
 	catch (std::runtime_error e) {
@@ -59,10 +59,10 @@ void Application::Run()
 {
 
 
-	Triangle2D* tra2D2 = new Triangle2D(-1, -1, -1, 0, 0, 0, "Text.vert", "basiccolor.frag", screen->getVBO());
+	Triangle2D* tra2D2 = new Triangle2D(-1, -1, -1, 0, 0, 0, "Text.vert", "basiccolor.frag");
 	layout->addObject(tra2D2);
-	Triangle2D* tra2D = new Triangle2D(-0.5, -0.5, 0, 0.5, 0.5, -0.5, "Text.vert", "basiccolor.frag", screen->getVBO());
-	layout->addObject(tra2D);
+	Rectangular2D* rec2D = new Rectangular2D(1,1, 1,0, 0,0, 0, 1, "Text.vert", "basiccolor.frag");
+	layout->addObject(rec2D);
 
 	while (!glfwWindowShouldClose(screen->window))
 	{
@@ -83,10 +83,4 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
-}
-
-int Application::assignVAO()
-{
-	++VAOcount;
-	return VAOcount;
 }

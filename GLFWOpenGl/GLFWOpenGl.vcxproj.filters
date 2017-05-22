@@ -39,7 +39,7 @@
     <ClCompile Include="shprogram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WindowLayer.cpp">
+    <ClCompile Include="Rectagular2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,7 +68,7 @@
     <ClInclude Include="shprogram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WindowLayer.h">
+    <ClInclude Include="Rectagular2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

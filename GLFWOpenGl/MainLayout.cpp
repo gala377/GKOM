@@ -8,7 +8,7 @@ MainLayout::MainLayout(MainWindow* window) : parent(window)
 void MainLayout::Draw()
 {
 	for (RawObject* obj : objects)
-		obj->Draw(parent->getVBO());
+		obj->Draw();
 	for (Layout* lay : layouts)
 		lay->Draw(parent);
 }

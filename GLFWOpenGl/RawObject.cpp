@@ -4,7 +4,9 @@
 
 RawObject::RawObject()
 {
-	glGenVertexArrays(Application::assignVAO(), &VAO);
+	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &EBO);
+	glGenVertexArrays(1, &VAO);
 	shader = nullptr;
 
 }

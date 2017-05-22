@@ -13,11 +13,7 @@ public:
 	~MainWindow();
 
 	void setViewport();
-	void setVBO();
-	GLuint getVBO() { return VBO; };
 private:
-	GLuint VBO;
-
 	GLFWwindow* createWindow(GLuint width, GLuint height, const char* title) throw(std::runtime_error);
 	void setViewport(GLFWwindow* w);
 };

@@ -12,7 +12,6 @@ public:
 	~Application();
 
 	void Run();
-	static int assignVAO();
 private:
 	static int VAOcount;
 	MainWindow* screen;

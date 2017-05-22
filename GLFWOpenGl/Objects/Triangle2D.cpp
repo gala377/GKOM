@@ -10,7 +10,7 @@ Triangle2D::Triangle2D() : RawObject()
 	vertices[8] = 0.0f;
 }
 
-Triangle2D::Triangle2D(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat x3, GLfloat y3, const char * vert, const char * frag, GLuint VBO): RawObject()
+Triangle2D::Triangle2D(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat x3, GLfloat y3, const char * vert, const char * frag): RawObject()
 {
 	compileShaders(vert, frag);
 
@@ -53,7 +53,7 @@ void Triangle2D::defineVertertices(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y
 
 }
 
-void Triangle2D::Draw(GLuint VBO)
+void Triangle2D::Draw()
 { 
 	//Drawing 
 	shader->Use();

@@ -38,8 +38,3 @@ void MainWindow::setViewport()
 {
 	setViewport(window);
 }
-
-void MainWindow::setVBO()
-{
-	glGenBuffers(1, &VBO);
-}

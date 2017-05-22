@@ -152,8 +152,8 @@
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Objects\Triangle2D.cpp" />
     <ClCompile Include="RawObject.cpp" />
+    <ClCompile Include="Rectagular2D.cpp" />
     <ClCompile Include="shprogram.cpp" />
-    <ClCompile Include="WindowLayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -162,9 +162,9 @@
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Objects\Triangle2D.h" />
     <ClInclude Include="RawObject.h" />
+    <ClInclude Include="Rectagular2D.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="shprogram.h" />
-    <ClInclude Include="WindowLayer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="basiccolor.frag" />
