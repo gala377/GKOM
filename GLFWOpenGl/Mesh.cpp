@@ -10,6 +10,45 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices, std::vecto
 	this->setupMesh();
 }
 
+Mesh::Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices, std::vector<Texture> textures, const char * vert, const char * frag) : Mesh(vertices, indices, textures)
+{
+	compileShaders(vert, frag);
+}
+
+void Mesh::Draw(ShaderProgram shader)
+{
+	GLuint diffuseNr = 1;
+	GLuint specularNr = 1;
+	for (GLuint i = 0; i < textures.size(); i++)
+	{
+		glActiveTexture(GL_TEXTURE0 + i); 
+
+		std::stringstream stream;
+		std::stringstream ss;
+		std::string number;
+		std::string name = textures[i].type;
+		if (name == "texture_diffuse")
+			ss << diffuseNr++; // Transfer GLuint to stream
+		else if (name == "texture_specular")
+			ss << specularNr++; // Transfer GLuint to stream
+		number = ss.str();
+
+		glUniform1f(glGetUniformLocation(shader.get_programID(), ("material." + name + number).c_str()), i);
+		glBindTexture(GL_TEXTURE_2D, this->textures[i].id);
+	}
+	glActiveTexture(GL_TEXTURE0);
+
+	// Draw mesh
+	glBindVertexArray(this->VAO);
+	glDrawElements(GL_TRIANGLES, this->indices.size(), GL_UNSIGNED_INT, 0);
+	glBindVertexArray(0);
+}
+
+void Mesh::Draw()
+{
+	Draw(*shader);
+}
+	
 void Mesh::setupMesh()
 {
 	glGenVertexArrays(1, &VAO);

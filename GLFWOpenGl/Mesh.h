@@ -2,6 +2,7 @@
 #include "RawObject.h"
 #include <vector>
 #include <string>
+#include <sstream>
 #include <memory>
 #include <GL/glew.h>
 #include <glm/vec2.hpp>
@@ -27,6 +28,7 @@ public:
 	std::vector<Texture> textures;
 
 	Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices, std::vector<Texture> textures);
+	Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices, std::vector<Texture> textures, const char* vert, const char* frag);
 	void Draw(ShaderProgram shader);
 	void Draw();
 private:
