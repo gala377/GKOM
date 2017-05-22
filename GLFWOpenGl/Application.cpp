@@ -57,12 +57,12 @@ void Application::initGLEW()
 
 void Application::Run()
 {
-
-
 	Triangle2D* tra2D2 = new Triangle2D(-1, -1, -1, 0, 0, 0, "Text.vert", "basiccolor.frag");
 	layout->addObject(tra2D2);
 	Rectangular2D* rec2D = new Rectangular2D(1,1, 1,0, 0,0, 0, 1, "Text.vert", "basiccolor.frag");
 	layout->addObject(rec2D);
+
+	rec2D->rotate(75, 0, 0, 1);
 
 	while (!glfwWindowShouldClose(screen->window))
 	{
