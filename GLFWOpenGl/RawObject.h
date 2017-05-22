@@ -3,14 +3,16 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "shprogram.h"
+#include <vector>
 
 
 class RawObject
 {
 public:
 	RawObject();
+	RawObject(std::vector<GLfloat> vertices, std::vector<GLuint> indices);
 	~RawObject();
-	virtual void Draw() = 0;
+	virtual void Draw();
 	void compileShaders(const char* vert, const char* frag);
 protected:
 	GLuint VAO;

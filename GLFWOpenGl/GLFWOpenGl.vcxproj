@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\GLMathematics.0.9.5.4\build\native\GLMathematics.props" Condition="Exists('..\packages\GLMathematics.0.9.5.4\build\native\GLMathematics.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -150,6 +151,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainLayout.cpp" />
     <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Objects\Triangle2D.cpp" />
     <ClCompile Include="RawObject.cpp" />
     <ClCompile Include="Rectagular2D.cpp" />
@@ -160,6 +162,7 @@
     <ClInclude Include="Layout.h" />
     <ClInclude Include="MainLayout.h" />
     <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="Objects\Triangle2D.h" />
     <ClInclude Include="RawObject.h" />
     <ClInclude Include="Rectagular2D.h" />
@@ -169,12 +172,18 @@
   <ItemGroup>
     <None Include="basiccolor.frag" />
     <None Include="ClassDiagram.cd" />
+    <None Include="packages.config" />
     <None Include="Text.vert" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GLFWOpenGl.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\GLMathematics.0.9.5.4\build\native\GLMathematics.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GLMathematics.0.9.5.4\build\native\GLMathematics.props'))" />
+  </Target>
 </Project>
