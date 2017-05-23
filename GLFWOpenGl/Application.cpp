@@ -2,6 +2,8 @@
 #include "Objects\Triangle2D.h"
 #include "Rectagular2D.h"
 #include "Objects\ColorCube.h"
+#include "Objects\Light.h"
+#include "Objects\SolidColorCube.h"
 #include "Camera.h"
 
 bool keys[1024];
@@ -76,7 +78,13 @@ void Application::Run()
 	ColorCube* cube = new ColorCube(0.3, 1, 0.5);
 	layout->addObject(cube);
 	//rec2D->rotate(-10, 1, 0, 0);
+	Light::addNewLight(glm::vec3(2, 0, 2), glm::vec3(1, 1, 1));
+	for (auto light : Light::lights)
+		layout->addObject(light);
 
+	SolidColorCube* solid = new SolidColorCube(1, 1, 1, glm::vec3(1.0f, 0.3f, 0.5f));
+	layout->addObject(solid);
+	solid->translate(5, 2, 0);
 
 
 	while (!glfwWindowShouldClose(screen->window))

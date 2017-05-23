@@ -1,5 +1,6 @@
 #pragma once
 #include "Cube.h"
+#include "Light.h"
 class SolidColorCube :
 	public Cube
 {
