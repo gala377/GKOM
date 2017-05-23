@@ -60,6 +60,9 @@
     <ClCompile Include="Objects\SolidColorCube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\RONormals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainWindow.h">
@@ -107,12 +110,12 @@
     <ClInclude Include="Objects\SolidColorCube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\RONormals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
-    <None Include="Text.vert">
-      <Filter>Header Files</Filter>
-    </None>
     <None Include="basiccolor.frag" />
     <None Include="packages.config" />
     <None Include="shaders\default.vert" />
@@ -120,6 +123,7 @@
     <None Include="shaders\defaultLight.frag" />
     <None Include="shaders\lightVert.vert" />
     <None Include="shaders\lightFrag.frag" />
+    <None Include="Text.vert" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GLFWOpenGl.rc">
