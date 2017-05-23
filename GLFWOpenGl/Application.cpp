@@ -15,17 +15,18 @@ Application::Application()
 {
 	try {
 		initGLFW();
-		screen = new MainWindow(1280, 720, "Test window");
+		screen = new MainWindow(WIDTH, HEIGHT, "Test window");
 		glfwMakeContextCurrent(screen->window);
 		screen->setViewport();
 		initGLEW();
 		
 		glfwSetKeyCallback(screen->window, key_callback);
+		glfwSetCursorPosCallback(screen->window, mouse_callback);
+		glfwSetScrollCallback(screen->window, scroll_callback);
+
 		layout = new MainLayout(screen);
 		glEnable(GL_DEPTH_TEST);
-		
-		for (int i = 0; i < 1024; i++)
-			keys[i] = false;
+		glfwSetInputMode(screen->window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	}
 	catch (std::runtime_error e) {
 		std::cout << "Runtime Exception in Application.Application " << e.what() << "\n";
@@ -112,4 +113,49 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 		else if (action == GLFW_RELEASE)
 			keys[key] = false;
 	}
+}
+
+
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+	if (mainCamera.firstMouse)
+	{
+		mainCamera.lastX = xpos;
+		mainCamera.lastY = ypos;
+		mainCamera.firstMouse = false;
+	}
+
+	GLfloat xoffset = xpos - mainCamera.lastX;
+	GLfloat yoffset = mainCamera.lastY - ypos; // Reversed since y-coordinates go from bottom to left
+	mainCamera.lastX = xpos;
+	mainCamera.lastY = ypos;
+
+	GLfloat sensitivity = 0.05;	// Change this value to your liking
+	xoffset *= sensitivity;
+	yoffset *= sensitivity;
+
+	mainCamera.yaw += xoffset;
+	mainCamera.pitch += yoffset;
+
+	// Make sure that when pitch is out of bounds, screen doesn't get flipped
+	if (mainCamera.pitch > 89.0f)
+		mainCamera.pitch = 89.0f;
+	if (mainCamera.pitch < -89.0f)
+		mainCamera.pitch = -89.0f;
+
+	glm::vec3 front;
+	front.x = cos(glm::radians(mainCamera.yaw)) * cos(glm::radians(mainCamera.pitch));
+	front.y = sin(glm::radians(mainCamera.pitch));
+	front.z = sin(glm::radians(mainCamera.yaw)) * cos(glm::radians(mainCamera.pitch));
+	mainCamera.cameraFront = glm::normalize(front);
+}
+
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+	if (mainCamera.fov >= 1.0f && mainCamera.fov <= 45.0f)
+		mainCamera.fov -= yoffset;
+	if (mainCamera.fov <= 1.0f)
+		mainCamera.fov = 1.0f;
+	if (mainCamera.fov >= 45.0f)
+		mainCamera.fov = 45.0f;
 }

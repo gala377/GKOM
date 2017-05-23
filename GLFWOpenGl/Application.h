@@ -5,6 +5,9 @@
 #include <GLFW/glfw3.h>
 #include "MainLayout.h"
 
+#define WIDTH 1280
+#define HEIGHT 720
+
 class Application
 {
 public:
@@ -29,3 +32,5 @@ private:
 
 extern bool keys[1024];
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
+void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
