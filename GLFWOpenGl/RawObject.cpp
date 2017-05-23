@@ -8,8 +8,9 @@ RawObject::RawObject()
 	glGenBuffers(1, &EBO);
 	glGenVertexArrays(1, &VAO);
 	shader = nullptr;
-	trans = glm::mat4(1.0);
 
+	trans = glm::mat4(1.0);
+	position = glm::vec3(0, 0, 0);
 }
 
 RawObject::RawObject(std::vector<GLfloat> verts, std::vector<GLuint> indics) : RawObject()
@@ -37,14 +38,20 @@ RawObject::RawObject(std::vector<GLfloat> verts, std::vector<GLuint> indics) : R
 RawObject::RawObject(std::vector<GLfloat> verts, std::vector<GLfloat> normals, std::vector<GLuint> indics) : RawObject()
 {
 	indices = std::move(indics);
-	for (int i = 0; i < verts.size() / 3; i++)
+	for (int i = 0; i < (verts.size() / 3); i++)
 	{
 		for (int j = i * 3; j < i * 3 + 3; j++)
-			vertices.push_back(verts[i]);
+		{
+			vertices.push_back(verts[j]);
+			std::cout << " " << verts[j] << ",";
+		}
 		for (int j = i * 3; j < i * 3 + 3; j++)
-			vertices.push_back(normals[i]);	
+		{
+			vertices.push_back(normals[j]);
+			std::cout << " " << normals[j] << ", ";
+		}
+		std::cout << "\n";
 	}
-
 	glBindVertexArray(VAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -55,7 +62,7 @@ RawObject::RawObject(std::vector<GLfloat> verts, std::vector<GLfloat> normals, s
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)0);
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)(3*sizeof(GLfloat)));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(1);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0); // Note that this is allowed, the call to glVertexAttribPointer registered VBO as the currently bound vertex buffer object so afterwards we can safely unbind
@@ -91,6 +98,7 @@ void RawObject::compileShaders(const char* frag, const char* vert)
 void RawObject::translate(GLfloat x, GLfloat y, GLfloat z)
 {
 	trans = glm::translate(trans, glm::vec3(x, y, z));
+	position = position + glm::vec3(x, y, z);
 }
 
 void RawObject::rotate(GLfloat arc, GLfloat x, GLfloat y, GLfloat z)
@@ -101,6 +109,11 @@ void RawObject::rotate(GLfloat arc, GLfloat x, GLfloat y, GLfloat z)
 void RawObject::scale(GLfloat x, GLfloat y, GLfloat z)
 {
 	trans = glm::scale(trans, glm::vec3(x, y, z));
+}
+
+glm::vec3 RawObject::getPosition()
+{
+	return position;
 }
 
 void RawObject::setUniforms()

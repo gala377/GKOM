@@ -21,6 +21,8 @@ public:
 	void translate(GLfloat x, GLfloat y, GLfloat z);
 	void rotate(GLfloat arc, GLfloat x, GLfloat y, GLfloat z);
 	void scale(GLfloat x, GLfloat y, GLfloat z);
+
+	glm::vec3 getPosition();
 protected:
 	glm::mat4 trans;
 	std::vector<GLfloat> vertices;
@@ -30,6 +32,10 @@ protected:
 	GLuint EBO;
 	ShaderProgram* shader;
 	
+	glm::vec3 position;
+
 	virtual void setUniforms();
+
+
 };
 

@@ -21,6 +21,6 @@ void main()
     vec3 diffuse = diff * lightColor;
 
 
-    co    vec3 result = (ambient + diffuse) * objectColor;
+    vec3 result = (ambient + diffuse) * objectColor;
     color = vec4(result, 1.0f);
 }
