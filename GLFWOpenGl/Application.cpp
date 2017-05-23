@@ -85,6 +85,9 @@ void Application::Run()
 		lastFrame = currentFrame;
 
 		glfwPollEvents();
+		mainCamera.do_movement();
+		mainCamera.Update();
+
 		renderAll();
 		cube->rotate(0.001, 1, 1, 1);
 		glfwSwapBuffers(screen->window);

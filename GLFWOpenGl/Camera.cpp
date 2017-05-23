@@ -14,6 +14,11 @@ void Camera::do_movement()
 		cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
 }
 
+void Camera::Update()
+{
+	view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+}
+
 Camera::Camera()
 {
 	// Note that we're translating the scene in the reverse direction of where we want to move
