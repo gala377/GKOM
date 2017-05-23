@@ -8,6 +8,8 @@
 class Application
 {
 public:
+	static GLfloat deltaTime;
+
 	Application();
 	~Application();
 
@@ -17,15 +19,13 @@ private:
 	MainWindow* screen;
 	MainLayout* layout;
 
-	GLfloat deltaTime = 0.0f;
-	GLfloat lastFrame = 0.0f;
-
-	bool keys[1024];
+	static GLfloat lastFrame;
 
 	void initGLFW();
 	void initGLEW() throw( std::runtime_error );
 	void renderAll();
-	friend 	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
+	friend void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
 };
 
+extern bool keys[1024];
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);

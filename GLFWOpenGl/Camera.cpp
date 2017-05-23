@@ -1,6 +1,19 @@
 #include "Camera.h"
 #include "Application.h"
 
+void Camera::do_movement()
+{
+	GLfloat cameraSpeed = 5.0f * Application::deltaTime;
+	if (keys[GLFW_KEY_W])
+		cameraPos += cameraSpeed * cameraFront;
+	if (keys[GLFW_KEY_S])
+		cameraPos -= cameraSpeed * cameraFront;
+	if (keys[GLFW_KEY_A])
+		cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+	if (keys[GLFW_KEY_D])
+		cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+}
+
 Camera::Camera()
 {
 	// Note that we're translating the scene in the reverse direction of where we want to move
