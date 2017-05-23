@@ -1,6 +1,6 @@
 #pragma once
 #include "..\MainLayout.h"
-#include "E:\Programowanie\OpenGLTEST\GLFWOpenGl\GLFWOpenGl\RawObject.h"
+#include "..\RawObject.h"
 class Triangle2D : public RawObject
 {
 public:

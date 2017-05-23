@@ -153,6 +153,7 @@
     <ClCompile Include="MainLayout.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Objects\Cube.cpp" />
     <ClCompile Include="Objects\Triangle2D.cpp" />
     <ClCompile Include="RawObject.cpp" />
     <ClCompile Include="Rectagular2D.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="MainLayout.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Objects\Cube.h" />
     <ClInclude Include="Objects\Triangle2D.h" />
     <ClInclude Include="RawObject.h" />
     <ClInclude Include="Rectagular2D.h" />
