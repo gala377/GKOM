@@ -156,6 +156,7 @@
     <ClCompile Include="Objects\ColorCube.cpp" />
     <ClCompile Include="Objects\Cube.cpp" />
     <ClCompile Include="Objects\Light.cpp" />
+    <ClCompile Include="Objects\SolidColorCube.cpp" />
     <ClCompile Include="Objects\Triangle2D.cpp" />
     <ClCompile Include="RawObject.cpp" />
     <ClCompile Include="Rectagular2D.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="Objects\ColorCube.h" />
     <ClInclude Include="Objects\Cube.h" />
     <ClInclude Include="Objects\Light.h" />
+    <ClInclude Include="Objects\SolidColorCube.h" />
     <ClInclude Include="Objects\Triangle2D.h" />
     <ClInclude Include="RawObject.h" />
     <ClInclude Include="Rectagular2D.h" />
