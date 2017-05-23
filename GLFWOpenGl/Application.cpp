@@ -1,7 +1,7 @@
 #include "Application.h"
 #include "Objects\Triangle2D.h"
 #include "Rectagular2D.h"
-#include "Objects\Cube.h"
+#include "Objects\ColorCube.h"
 #include "Camera.h"
 
 int Application::VAOcount = 0;
@@ -18,6 +18,9 @@ Application::Application()
 		glfwSetKeyCallback(screen->window, key_callback);
 		layout = new MainLayout(screen);
 		glEnable(GL_DEPTH_TEST);
+		
+		for (int i = 0; i < 1024; i++)
+			keys[i] = false;
 	}
 	catch (std::runtime_error e) {
 		std::cout << "Runtime Exception in Application.Application " << e.what() << "\n";
@@ -65,7 +68,7 @@ void Application::Run()
 	//layout->addObject(tra2D2);
 	Rectangular2D* rec2D = new Rectangular2D(1,1, 1,0, 0,0, 0, 1);
 	//layout->addObject(rec2D);
-	Cube* cube = new Cube(1, 1, 1);
+	ColorCube* cube = new ColorCube(0.3, 1, 0.5);
 	layout->addObject(cube);
 	//rec2D->rotate(-10, 1, 0, 0);
 
@@ -73,9 +76,13 @@ void Application::Run()
 
 	while (!glfwWindowShouldClose(screen->window))
 	{
+		GLfloat currentFrame = glfwGetTime();
+		deltaTime = currentFrame - lastFrame;
+		lastFrame = currentFrame;
+
 		glfwPollEvents();
 		renderAll();
-		cube->rotate(0.001, 1, 0, 0);
+		cube->rotate(0.001, 1, 1, 1);
 		glfwSwapBuffers(screen->window);
 	}
 }

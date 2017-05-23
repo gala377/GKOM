@@ -17,6 +17,11 @@ private:
 	MainWindow* screen;
 	MainLayout* layout;
 
+	GLfloat deltaTime = 0.0f;
+	GLfloat lastFrame = 0.0f;
+
+	bool keys[1024];
+
 	void initGLFW();
 	void initGLEW() throw( std::runtime_error );
 	void renderAll();
