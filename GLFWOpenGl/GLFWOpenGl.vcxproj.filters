@@ -51,6 +51,9 @@
     <ClCompile Include="Objects\Cube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\ColorCube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainWindow.h">
@@ -89,6 +92,9 @@
     <ClInclude Include="Objects\Cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\ColorCube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
@@ -97,6 +103,8 @@
     </None>
     <None Include="basiccolor.frag" />
     <None Include="packages.config" />
+    <None Include="shaders\default.vert" />
+    <None Include="shaders\default.frag" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GLFWOpenGl.rc">

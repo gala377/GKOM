@@ -7,4 +7,9 @@ Rectangular2D::Rectangular2D(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLf
 		compileShaders(vert, frag);
 	}
 
+Rectangular2D::Rectangular2D(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat x3, GLfloat y3, GLfloat x4, GLfloat y4)
+	: Rectangular2D(x1, y1, x2, y2, x3, y3, x4, y4, "shaders/default.vert", "shaders/default.frag")
+{
+}
+
 

@@ -153,6 +153,7 @@
     <ClCompile Include="MainLayout.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Objects\ColorCube.cpp" />
     <ClCompile Include="Objects\Cube.cpp" />
     <ClCompile Include="Objects\Triangle2D.cpp" />
     <ClCompile Include="RawObject.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="MainLayout.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Objects\ColorCube.h" />
     <ClInclude Include="Objects\Cube.h" />
     <ClInclude Include="Objects\Triangle2D.h" />
     <ClInclude Include="RawObject.h" />
@@ -177,6 +179,8 @@
     <None Include="basiccolor.frag" />
     <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
+    <None Include="shaders\default.frag" />
+    <None Include="shaders\default.vert" />
     <None Include="Text.vert" />
   </ItemGroup>
   <ItemGroup>

@@ -62,6 +62,7 @@ void RawObject::compileShaders(const char* frag, const char* vert)
 {
 	if (shader != nullptr)
 		delete shader;
+
 	shader = new ShaderProgram(frag, vert);
 }
 

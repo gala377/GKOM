@@ -16,6 +16,11 @@ Triangle2D::Triangle2D(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat x
 	compileShaders(vert, frag);
 }
 
+Triangle2D::Triangle2D(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat x3, GLfloat y3)
+	: Triangle2D(x1, y1, x2, y2, x3, y3, "shaders/default.vert", "shaders/default.frag")
+{
+}
+
 
 Triangle2D::~Triangle2D()
 {

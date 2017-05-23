@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "Objects\Triangle2D.h"
 #include "Rectagular2D.h"
+#include "Objects\Cube.h"
 #include "Camera.h"
 
 int Application::VAOcount = 0;
@@ -60,59 +61,18 @@ void Application::initGLEW()
 
 void Application::Run()
 {
-	Triangle2D* tra2D2 = new Triangle2D(-1, -1, -1, 0, 0, 0, "Text.vert", "basiccolor.frag");
+	Triangle2D* tra2D2 = new Triangle2D(-1, -1, -1, 0, 0, 0);
 	//layout->addObject(tra2D2);
-	Rectangular2D* rec2D = new Rectangular2D(1,1, 1,0, 0,0, 0, 1, "Text.vert", "basiccolor.frag");
+	Rectangular2D* rec2D = new Rectangular2D(1,1, 1,0, 0,0, 0, 1);
 	//layout->addObject(rec2D);
-
+	Cube* cube = new Cube(1, 1, 1);
+	layout->addObject(cube);
 	//rec2D->rotate(-10, 1, 0, 0);
 
-	RawObject* cube = new RawObject(
-	{
-		-1.0f, -1.0f, -1.0f, //0
-		1.0f, -1.0f, -1.0f, //1
-		1.0f, -1.0f, 1.0f, //2
-		-1.0f, -1.0f, 1.0f, //3
 
-		-1.0f, 1.0f, -1.0f, //4
-		1.0f, 1.0f, -1.0f, //5
-		1.0f, 1.0f, 1.0f, //6
-		-1.0f, 1.0f, 1.0f, //7
-
-		-1.0f, -1.0f, -1.0f, //8
-		-1.0f, 1.0f, -1.0f, //9
-		-1.0f, 1.0f, 1.0f, //10
-		-1.0f, -1.0f, 1.0f, //11
-
-		1.0f, -1.0f, -1.0f, //12
-		1.0f, 1.0f, -1.0f, //13
-		1.0f, 1.0f, 1.0f, //14
-		1.0f, -1.0f, 1.0f, //15
-
-		1.0f, -1.0f, -1.0f, //16
-		1.0f, 1.0f, -1.0f, //17
-		-1.0f, 1.0f, -1.0f, //18
-		-1.0f, -1.0f, -1.0f, //19
-
-		1.0f, -1.0f, 1.0f, //20
-		1.0f, 1.0f, 1.0f, //21
-		-1.0f, 1.0f, 1.0f, //22
-		-1.0f, -1.0f, 1.0f, //23
-	}, {
-		0,1,2, 2,3,0,
-		4,6,5, 6,4,7,
-		8,10,9, 10,8,11,
-		12,13,14, 14,15,12,
-		16,18,17, 18,16,19,
-		20,21,22, 20,22,23
-	});
-	cube->compileShaders("Text.vert", "basiccolor.frag");
-	layout->addObject(cube);
 
 	while (!glfwWindowShouldClose(screen->window))
 	{
-
-
 		glfwPollEvents();
 		renderAll();
 		cube->rotate(0.001, 1, 0, 0);

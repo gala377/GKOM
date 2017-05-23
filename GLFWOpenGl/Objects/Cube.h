@@ -4,7 +4,8 @@ class Cube :
 	public RawObject
 {
 public:
-	Cube();
+	Cube(GLfloat width, GLfloat height, GLfloat length);
+	Cube(GLfloat width, GLfloat height, GLfloat length, const char* vert, const char* frag);
 	~Cube();
 };
 
