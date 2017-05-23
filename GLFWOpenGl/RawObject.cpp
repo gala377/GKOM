@@ -1,5 +1,5 @@
 #include "RawObject.h"
-#include "Application.h"
+#include "Camera.h"
 
 
 RawObject::RawObject()

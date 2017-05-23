@@ -10,13 +10,13 @@ Application::Application()
 	try {
 		initGLFW();
 		screen = new MainWindow(1280, 720, "Test window");
-		camera = &mainCamera;
 		glfwMakeContextCurrent(screen->window);
 		screen->setViewport();
 		initGLEW();
 		
 		glfwSetKeyCallback(screen->window, key_callback);
 		layout = new MainLayout(screen);
+		glEnable(GL_DEPTH_TEST);
 	}
 	catch (std::runtime_error e) {
 		std::cout << "Runtime Exception in Application.Application " << e.what() << "\n";
@@ -34,7 +34,6 @@ Application::~Application()
 	glfwTerminate();
 	delete screen;
 	delete layout;
-	delete camera;
 }
 
 void Application::initGLFW()
@@ -66,7 +65,8 @@ void Application::Run()
 	Rectangular2D* rec2D = new Rectangular2D(1,1, 1,0, 0,0, 0, 1, "Text.vert", "basiccolor.frag");
 	layout->addObject(rec2D);
 
-	//rec2D->rotate(-55, 1, 0, 0);
+	rec2D->rotate(-10, 1, 0, 0);
+
 
 
 	while (!glfwWindowShouldClose(screen->window))
@@ -82,7 +82,7 @@ void Application::Run()
 void Application::renderAll()
 {
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	layout->Draw();
 };
 
