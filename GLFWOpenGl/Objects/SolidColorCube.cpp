@@ -30,7 +30,7 @@ void SolidColorCube::Draw()
 	GLint lightColorLoc = glGetUniformLocation(shader->get_programID(), "lightColor");
 	glUniform3f(objectColorLoc, color.x, color.y, color.z);
 	
-	glm::vec3 lightColor(1, 1, 1);
+	glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
 	for (auto light : Light::lights)
 		lightColor = lightColor * light->color;
 

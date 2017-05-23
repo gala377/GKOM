@@ -79,6 +79,8 @@ void Application::Run()
 	layout->addObject(cube);
 	//rec2D->rotate(-10, 1, 0, 0);
 	Light::addNewLight(glm::vec3(2, 0, 2), glm::vec3(1, 1, 1));
+	Light::addNewLight(glm::vec3(4, 0, 1), glm::vec3(0.5, 0.3, 0.2));
+
 	for (auto light : Light::lights)
 		layout->addObject(light);
 
@@ -122,7 +124,6 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 			keys[key] = false;
 	}
 }
-
 
 void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {

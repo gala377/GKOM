@@ -8,6 +8,7 @@ public:
 	glm::vec3 color;
 	static std::vector<Light*> lights;
 	~Light();
+	void Draw();
 private:
 
 	Light(GLfloat r, GLfloat g, GLfloat b);
