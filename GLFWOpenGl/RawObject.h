@@ -28,5 +28,7 @@ protected:
 	GLuint VBO;
 	GLuint EBO;
 	ShaderProgram* shader;
+	
+	virtual void setUniforms();
 };
 

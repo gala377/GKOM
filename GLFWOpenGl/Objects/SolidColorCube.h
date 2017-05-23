@@ -7,9 +7,9 @@ class SolidColorCube :
 public:
 	SolidColorCube(GLfloat width, GLfloat height, GLfloat length, glm::vec3 color);
 	~SolidColorCube();
-	void Draw();
 private:
 	glm::vec4 color;
+	void setUniforms();
 
 };
 
