@@ -4,7 +4,7 @@
 
 
 SolidColorCube::SolidColorCube(GLfloat width, GLfloat height, GLfloat length, glm::vec3 color)
-	: Cube(width, height, length, "shaders/defaultLight.vert", "shaders/defaultLightNormals.frag")
+	: Cube(width, height, length, "shaders/defaultLight.vert", "shaders/defaultLightSpecular.frag")
 {
 	this->color = glm::vec4(color, 1.0f);
 }
@@ -21,7 +21,10 @@ void SolidColorCube::setUniforms()
 	GLint objectColorLoc = glGetUniformLocation(shader->get_programID(), "objectColor");
 	GLint lightColorLoc = glGetUniformLocation(shader->get_programID(), "lightColor");
 	GLint lightPosLoc = glGetUniformLocation(shader->get_programID(), "lightPos");
+	GLint viewPosLoc = glGetUniformLocation(shader->get_programID(), "viewPos");
+
 	glUniform3f(objectColorLoc, color.x, color.y, color.z);
+	glUniform3f(viewPosLoc, mainCamera.cameraPos.x, mainCamera.cameraPos.y, mainCamera.cameraPos.z);
 
 	glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
 	glm::vec3 lightPos;

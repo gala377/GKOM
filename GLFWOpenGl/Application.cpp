@@ -101,6 +101,7 @@ void Application::Run()
 
 		renderAll();
 		cube->rotate(0.001, 1, 1, 1);
+		solid->rotate(0.001, 1, 0, 1);
 		glfwSwapBuffers(screen->window);
 	}
 }
