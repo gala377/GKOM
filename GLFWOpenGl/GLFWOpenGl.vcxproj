@@ -156,6 +156,7 @@
     <ClCompile Include="ModelFactory.cpp" />
     <ClCompile Include="Objects\ColorCube.cpp" />
     <ClCompile Include="Objects\Cube.cpp" />
+    <ClCompile Include="Objects\GNCube.cpp" />
     <ClCompile Include="Objects\Light.cpp" />
     <ClCompile Include="Objects\RONormals.cpp" />
     <ClCompile Include="Objects\SolidColorCube.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="ModelFactory.h" />
     <ClInclude Include="Objects\ColorCube.h" />
     <ClInclude Include="Objects\Cube.h" />
+    <ClInclude Include="Objects\GNCube.h" />
     <ClInclude Include="Objects\Light.h" />
     <ClInclude Include="Objects\Objects.h" />
     <ClInclude Include="Objects\RONormals.h" />

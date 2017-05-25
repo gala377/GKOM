@@ -83,6 +83,12 @@ void Application::Run()
 	RawObject* c3 = ModelFactory::solidColorCyllinder(0.1, 2, 36, glm::vec3(0.7, 0.5, 0.6));
 	RawObject* c4 = ModelFactory::solidColorCyllinder(0.1, 2, 36, glm::vec3(0.7, 0.5, 0.6));
 
+	RawObject* test = ModelFactory::gnCube(0.7, 0.7, 0.7, glm::vec3(0, 0.7, 0.7), 
+		glm::vec3(0.5, 0.5, 0.5), glm::vec3(0, 0.7, 0.7), glm::vec3(1, 0, 0), 64);
+
+	test->translate(2, 1.5, 1);
+	layout->addObject(test);
+
 	c3->translate(0.5, 0, 0);
 	c4->translate(-0.5, 0, 0);
 

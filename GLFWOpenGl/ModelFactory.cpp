@@ -236,3 +236,11 @@ RawObject * ModelFactory::solidColorCyllinder(GLfloat radius, GLfloat height, GL
 
 	return cyllinder;
 }
+
+RawObject * ModelFactory::gnCube(GLfloat width, GLfloat height, GLfloat length, glm::vec3 color, 
+	glm::vec3 ambientColor, glm::vec3 diffColor, glm::vec3 specColor, GLfloat shiness)
+{
+	GNCube* obj = new GNCube(width, height, length, color);
+	obj->setMaterial(ambientColor, diffColor, specColor, shiness);
+	return obj;
+}

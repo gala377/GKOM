@@ -28,7 +28,7 @@ private:
 		glm::vec3 lightPos;
 		for (auto light : Light::lights)
 		{
-			lightColor = lightColor * light->color;
+			lightColor = lightColor * light->diffuse;
 			lightPos = light->getPosition();
 		}
 		glUniform3f(lightColorLoc, lightColor.x, lightColor.y, lightColor.z);
