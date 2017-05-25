@@ -153,6 +153,7 @@
     <ClCompile Include="MainLayout.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="ModelFactory.cpp" />
     <ClCompile Include="Objects\ColorCube.cpp" />
     <ClCompile Include="Objects\Cube.cpp" />
     <ClCompile Include="Objects\Light.cpp" />
@@ -170,9 +171,11 @@
     <ClInclude Include="MainLayout.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="ModelFactory.h" />
     <ClInclude Include="Objects\ColorCube.h" />
     <ClInclude Include="Objects\Cube.h" />
     <ClInclude Include="Objects\Light.h" />
+    <ClInclude Include="Objects\Objects.h" />
     <ClInclude Include="Objects\RONormals.h" />
     <ClInclude Include="Objects\SolidColorCube.h" />
     <ClInclude Include="Objects\Triangle2D.h" />
