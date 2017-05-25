@@ -72,26 +72,25 @@ void Application::initGLEW()
 
 void Application::Run()
 {
-	Triangle2D* tra2D2 = new Triangle2D(-1, -1, -1, 0, 0, 0);
-	//layout->addObject(tra2D2);
-	Rectangular2D* rec2D = new Rectangular2D(1,1, 1,0, 0,0, 0, 1);
-	//layout->addObject(rec2D);
-	ColorCube* cube = new ColorCube(0.3, 1, 0.5);
-	layout->addObject(cube);
-	//rec2D->rotate(-10, 1, 0, 0);
-	Light::addNewLight(glm::vec3(2, 0, 2), glm::vec3(1, 1, 1));
-	//Light::addNewLight(glm::vec3(4, 0, 1), glm::vec3(0.5, 0.3, 0.2));
 
+	Light::addNewLight(glm::vec3(1, 3, 1), glm::vec3(1, 1, 1));
+		
 	for (auto light : Light::lights)
 		layout->addObject(light);
 
-	SolidColorCube* solid = new SolidColorCube(1, 1, 1, glm::vec3(1.0f, 0.3f, 0.5f));
-	layout->addObject(solid);
-	solid->translate(5, 2, 0);
+	RawObject* c1 = ModelFactory::solidColorCube(100, 0.1, 100, glm::vec3(0, 1, 0.2));
+	RawObject* c2 = ModelFactory::solidColorCube(1, 0.4, 1.5, glm::vec3(0.8, 0.3, 0.2));
+	RawObject* c3 = ModelFactory::solidColorCyllinder(0.1, 2, 36, glm::vec3(0.7, 0.5, 0.6));
+	RawObject* c4 = ModelFactory::solidColorCyllinder(0.1, 2, 36, glm::vec3(0.7, 0.5, 0.6));
 
-	RawObject* cyllider = ModelFactory::solidColorCyllinder(1, 2, 16, glm::vec3(0, 1, 0.7));
-	cyllider->translate(10, 3, 3);
-	layout->addObject(cyllider);
+	c3->translate(0.5, 0, 0);
+	c4->translate(-0.5, 0, 0);
+
+
+	layout->addObject(c1);
+	layout->addObject(c2);
+	layout->addObject(c3);
+	layout->addObject(c4);
 
 	while (!glfwWindowShouldClose(screen->window))
 	{
@@ -104,8 +103,7 @@ void Application::Run()
 		mainCamera.Update();
 
 		renderAll();
-		cube->rotate(0.001, 1, 1, 1);
-		solid->rotate(0.001, 1, 0, 1);
+
 		glfwSwapBuffers(screen->window);
 	}
 }
