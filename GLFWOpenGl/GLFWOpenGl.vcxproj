@@ -159,6 +159,7 @@
     <ClCompile Include="Objects\Light.cpp" />
     <ClCompile Include="Objects\RONormals.cpp" />
     <ClCompile Include="Objects\SolidColorCube.cpp" />
+    <ClCompile Include="Objects\SolidColorCyllinder.cpp" />
     <ClCompile Include="Objects\Triangle2D.cpp" />
     <ClCompile Include="RawObject.cpp" />
     <ClCompile Include="Rectagular2D.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="Objects\Objects.h" />
     <ClInclude Include="Objects\RONormals.h" />
     <ClInclude Include="Objects\SolidColorCube.h" />
+    <ClInclude Include="Objects\SolidColorCyllinder.h" />
     <ClInclude Include="Objects\Triangle2D.h" />
     <ClInclude Include="RawObject.h" />
     <ClInclude Include="Rectagular2D.h" />

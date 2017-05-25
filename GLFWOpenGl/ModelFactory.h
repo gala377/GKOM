@@ -1,6 +1,7 @@
 #pragma once
 #include "Objects\Objects.h"
 #include <vector>
+#include <iostream>
 class ModelFactory
 {
 public:
@@ -14,6 +15,7 @@ public:
 	static RawObject* triangle2D();
 	static RawObject* cyllinder(GLfloat radius, GLfloat height, GLuint segments);
 	static RawObject* cyllinder(GLfloat radius, GLfloat height, GLuint segments, const char* vert, const char* frag);
+	static RawObject* solidColorCyllinder(GLfloat radius, GLfloat height, GLuint segments, glm::vec3 color);
 
 private:
 	ModelFactory();

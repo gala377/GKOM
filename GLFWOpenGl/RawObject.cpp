@@ -43,14 +43,14 @@ RawObject::RawObject(std::vector<GLfloat> verts, std::vector<GLfloat> normals, s
 		for (int j = i * 3; j < i * 3 + 3; j++)
 		{
 			vertices.push_back(verts[j]);
-			std::cout << " " << verts[j] << ",";
+			//std::cout << " " << verts[j] << ",";
 		}
 		for (int j = i * 3; j < i * 3 + 3; j++)
 		{
 			vertices.push_back(normals[j]);
-			std::cout << " " << normals[j] << ", ";
+			//std::cout << " " << normals[j] << ", ";
 		}
-		std::cout << "\n";
+		//std::cout << "\n";
 	}
 	glBindVertexArray(VAO);
 

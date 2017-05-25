@@ -5,6 +5,7 @@
 #include "Objects\Light.h"
 #include "Objects\SolidColorCube.h"
 #include "Camera.h"
+#include "ModelFactory.h"
 
 bool keys[1024];
 
@@ -88,6 +89,9 @@ void Application::Run()
 	layout->addObject(solid);
 	solid->translate(5, 2, 0);
 
+	RawObject* cyllider = ModelFactory::solidColorCyllinder(1, 2, 16, glm::vec3(0, 1, 0.7));
+	cyllider->translate(10, 3, 3);
+	layout->addObject(cyllider);
 
 	while (!glfwWindowShouldClose(screen->window))
 	{

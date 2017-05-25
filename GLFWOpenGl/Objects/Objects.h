@@ -4,3 +4,4 @@
 #include "Light.h"
 #include "Triangle2D.h"
 #include "ColorCube.h"
+#include "SolidColorCyllinder.h"
