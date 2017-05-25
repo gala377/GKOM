@@ -192,9 +192,15 @@
     <None Include="packages.config" />
     <None Include="shaders\default.frag" />
     <None Include="shaders\default.vert" />
+    <None Include="shaders\defaultColor.frag" />
+    <None Include="shaders\defaultColor.vert" />
     <None Include="shaders\defaultLight.frag" />
+    <None Include="shaders\defaultLight.vert" />
+    <None Include="shaders\defaultLightNormals.frag" />
+    <None Include="shaders\defaultLightSpecular.frag" />
     <None Include="shaders\lightFrag.frag" />
     <None Include="shaders\lightVert.vert" />
+    <None Include="shaders\material.frag" />
     <None Include="Text.vert" />
   </ItemGroup>
   <ItemGroup>
