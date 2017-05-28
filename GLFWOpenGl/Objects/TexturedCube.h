@@ -7,8 +7,8 @@ class TexturedCube :
 {
 public:
 	TexturedCube(GLfloat width, GLfloat height, GLfloat length);
-	TexturedCube(GLfloat width, GLfloat height, GLfloat length, const char* texture);
-	TexturedCube(GLfloat width, GLfloat height, GLfloat length, const char* vert, const char* frag, const char* texture);
+	TexturedCube(GLfloat width, GLfloat height, GLfloat length, const char* diffText, const char* specText);
+	TexturedCube(GLfloat width, GLfloat height, GLfloat length, const char* vert, const char* frag, const char* diffText, const char* specText);
 	~TexturedCube();
 
 	void setMaterial(glm::vec3 diffColor, glm::vec3 specColor, GLfloat shiness);

@@ -206,6 +206,8 @@
     <None Include="shaders\lightFrag.frag" />
     <None Include="shaders\lightVert.vert" />
     <None Include="shaders\material.frag" />
+    <None Include="shaders\materialMapped.frag" />
+    <None Include="shaders\materialMapped.vert" />
     <None Include="Text.vert" />
   </ItemGroup>
   <ItemGroup>

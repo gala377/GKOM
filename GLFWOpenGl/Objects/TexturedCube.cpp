@@ -3,16 +3,16 @@
 #include <SOIL.h>
 
 TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length) :
-	TexturedCube(width, height, length, "shaders/materialMapped.vert", "shaders/materialMapped.frag", "textures/wood.png")
+	TexturedCube(width, height, length, "shaders/materialMapped.vert", "shaders/materialMapped.frag", "textures/wood.png", "textures/woodSpecular.png")
 {
 }
 
-TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length, const char* texture) :
-		TexturedCube(width, height, length, "shaders/materialMapped.vert", "shaders/materialMapped.frag", texture)
+TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length, const char* diffText, const char* specText) :
+		TexturedCube(width, height, length, "shaders/materialMapped.vert", "shaders/materialMapped.frag", diffText, specText)
 {
 }
 
-TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length, const char* vert, const char* frag, const char* texture) :
+TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length, const char* vert, const char* frag, const char* diffText, const char* specText) :
 	RawObject({
 	-1.0f*width, -1.0f*height, -1.0f*length, //0
 	1.0f*width, -1.0f*height, -1.0f*length, //1
@@ -116,7 +116,7 @@ TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length, const 
 	int textWidth, textHeight;
 	unsigned char* image;
 	// Diffuse map
-	image = SOIL_load_image(texture, &textWidth, &textHeight, 0, SOIL_LOAD_RGB);
+	image = SOIL_load_image(diffText, &textWidth, &textHeight, 0, SOIL_LOAD_RGB);
 	if (image == nullptr)
 		throw std::runtime_error("Could not find texture");
 	glBindTexture(GL_TEXTURE_2D, diffuseMap);

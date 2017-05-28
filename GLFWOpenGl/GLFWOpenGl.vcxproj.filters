@@ -157,6 +157,8 @@
     <None Include="shaders\defaultLightNormals.frag" />
     <None Include="shaders\defaultLightSpecular.frag" />
     <None Include="shaders\material.frag" />
+    <None Include="shaders\materialMapped.frag" />
+    <None Include="shaders\materialMapped.vert" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GLFWOpenGl.rc">
