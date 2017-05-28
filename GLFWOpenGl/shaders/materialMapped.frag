@@ -26,8 +26,7 @@ out vec4 color;
   
 uniform vec3 viewPos;
 uniform Material material;
-uniform Light light;
-uniform PointLight pointLights[NR_POINT_LIGHTS];
+uniform Light pointLights[NR_POINT_LIGHTS];
 
 vec3 CalcPointLight(Light light, vec3 normal, vec3 fragPos, vec3 viewDir);
 
