@@ -147,11 +147,11 @@ void Application::setUpLight()
 
 void Application::setUpDetails()
 {
-	RawObject* pole1 = ModelFactory::texturedCyllinder(0.5, 1, 32, "textures/metal.jpg", "texture/metal.jpg", 64);
-	RawObject* pole2 = ModelFactory::texturedCyllinder(0.5, 1, 32, "textures/metal.jpg", "texture/metal.jpg", 64);
+	RawObject* pole1 = ModelFactory::texturedCyllinder(0.5, 6, 32, "textures/metal2.jpg", "texture/metal2.jpg", 128);
+	RawObject* pole2 = ModelFactory::texturedCyllinder(0.5, 6, 32, "textures/metal2.jpg", "texture/metal2.jpg", 128);
 	
-	pole1->translate(2, 0.5, 2);
-	pole2->translate(2, 0.5, 2);
+	pole1->translate(2.6, 3, 2);
+	pole2->translate(-2.6, 3, 2);
 
 	layout->addObject(pole1);
 	layout->addObject(pole2);
