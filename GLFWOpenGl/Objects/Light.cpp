@@ -16,13 +16,16 @@ Light::Light()
 {
 }
 
-void Light::addNewLight(glm::vec3 postion, glm::vec3 ambientColor, glm::vec3 diffuseColor, glm::vec3 specularColor)
+void Light::addNewLight(glm::vec3 postion, glm::vec3 ambientColor, glm::vec3 diffuseColor, glm::vec3 specularColor, GLfloat constantPow, GLfloat lineraPow, GLfloat quadraticPow)
 {
 	Light* light = new Light();
 	light->translate(postion.x, postion.y, postion.z);
 	light->ambient = ambientColor;
 	light->diffuse = diffuseColor;
 	light->specular = specularColor;
+	light->constant = constantPow;
+	light->linear = lineraPow;
+	light->quadratic = quadraticPow;
 	lights.push_back(light);
 }
 

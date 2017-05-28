@@ -1,6 +1,7 @@
 #pragma once
 #include "..\RawObject.h"
 #include "..\Camera.h" 
+#include <string> 
 
 class TexturedCube :
 	public RawObject
