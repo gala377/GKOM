@@ -1,7 +1,7 @@
 #include "GNCube.h"
 #include "..\Camera.h"
 #include "Light.h"
-
+#include <string>
 
 
 
@@ -34,11 +34,6 @@ void GNCube::setUniforms()
 	GLint matSpecularLoc = glGetUniformLocation(shader->get_programID(), "material.specular");
 	GLint matShineLoc = glGetUniformLocation(shader->get_programID(), "material.shininess");
 
-	GLint lightAmbientLoc = glGetUniformLocation(shader->get_programID(), "light.ambient");
-	GLint lightDiffuseLoc = glGetUniformLocation(shader->get_programID(), "light.diffuse");
-	GLint lightSpecularLoc = glGetUniformLocation(shader->get_programID(), "light.specular");
-	GLint lightPosLoc = glGetUniformLocation(shader->get_programID(), "light.position");
-
 	glUniform3f(matAmbientLoc, ambient.x, ambient.y, ambient.z);
 	glUniform3f(matDiffuseLoc, diffuse.x, diffuse.y, diffuse.z);
 	glUniform3f(matSpecularLoc, specular.x, specular.y, specular.z);
@@ -47,11 +42,18 @@ void GNCube::setUniforms()
 	glUniform3f(viewPosLoc, mainCamera.cameraPos.x, mainCamera.cameraPos.y, mainCamera.cameraPos.z);
 
 	glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
-	for (auto light : Light::lights)
+	std::string tableName = "pointLights";
+	for (int i = 0; i < Light::lights.size(); i++)
 	{
-		glUniform3f(lightPosLoc, light->getPosition().x, light->getPosition().y, light->getPosition().z);
-		glUniform3f(lightAmbientLoc, light->ambient.x, light->ambient.y, light->ambient.z);
-		glUniform3f(lightDiffuseLoc, light->diffuse.x, light->diffuse.y, light->diffuse.z );
-		glUniform3f(lightSpecularLoc, light->specular.x, light->specular.y, light->specular.z);
+		std::string index = std::to_string(i);
+		std::string fullName = tableName + "[" + index + "].";
+		//std::cout << fullName << "\n";
+		glUniform3f(glGetUniformLocation(shader->get_programID(), (fullName + "position").c_str()), Light::lights[i]->getPosition().x, Light::lights[i]->getPosition().y, Light::lights[i]->getPosition().z);
+		glUniform3f(glGetUniformLocation(shader->get_programID(), (fullName + "ambient").c_str()), Light::lights[i]->ambient.x, Light::lights[i]->ambient.y, Light::lights[i]->ambient.z);
+		glUniform3f(glGetUniformLocation(shader->get_programID(), (fullName + "diffuse").c_str()), Light::lights[i]->diffuse.x, Light::lights[i]->diffuse.y, Light::lights[i]->diffuse.z);
+		glUniform3f(glGetUniformLocation(shader->get_programID(), (fullName + "specular").c_str()), Light::lights[i]->specular.x, Light::lights[i]->specular.y, Light::lights[i]->specular.z);
+		glUniform1f(glGetUniformLocation(shader->get_programID(), (fullName + "constant").c_str()), Light::lights[i]->constant);
+		glUniform1f(glGetUniformLocation(shader->get_programID(), (fullName + "linear").c_str()), Light::lights[i]->linear);
+		glUniform1f(glGetUniformLocation(shader->get_programID(), (fullName + "quadratic").c_str()), Light::lights[i]->quadratic);
 	}
 }

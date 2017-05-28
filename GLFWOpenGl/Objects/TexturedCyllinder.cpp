@@ -1,116 +1,13 @@
-#include "TexturedCube.h"
-#include "Light.h"
-#include <SOIL.h>
+#include "TexturedCyllinder.h"
+#include <string>
 
-TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length) :
-	TexturedCube(width, height, length, "shaders/materialMapped.vert", "shaders/materialMapped.frag", "textures/wood.png", "textures/woodSpecular.png")
+TexturedCyllinder::~TexturedCyllinder()
 {
 }
 
-TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length, const char* diffText, const char* specText) :
-		TexturedCube(width, height, length, "shaders/materialMapped.vert", "shaders/materialMapped.frag", diffText, specText)
+void TexturedCyllinder::setMaterial(const char * diffText, const char * specText, GLfloat shiness)
 {
-}
-
-TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length, const char* vert, const char* frag, const char* diffText, const char* specText) :
-	RawObject({
-	-1.0f*width, -1.0f*height, -1.0f*length, //0
-	1.0f*width, -1.0f*height, -1.0f*length, //1
-	1.0f*width, -1.0f*height, 1.0f*length, //2
-	-1.0f*width, -1.0f*height, 1.0f*length, //3
-
-	-1.0f*width, 1.0f*height, -1.0f*length, //4
-	1.0f*width, 1.0f*height, -1.0f*length, //5
-	1.0f*width, 1.0f*height, 1.0f*length, //6
-	-1.0f*width, 1.0f*height, 1.0f*length, //7
-
-	-1.0f*width, -1.0f*height, -1.0f*length, //8
-	-1.0f*width, 1.0f*height, -1.0f*length, //9
-	-1.0f*width, 1.0f*height, 1.0f*length, //10
-	-1.0f*width, -1.0f*height, 1.0f*length, //11
-
-	1.0f*width, -1.0f*height, -1.0f*length, //12
-	1.0f*width, 1.0f*height, -1.0f*length, //13
-	1.0f*width, 1.0f*height, 1.0f*length, //14
-	1.0f*width, -1.0f*height, 1.0f*length, //15
-
-	1.0f*width, -1.0f*height, -1.0f*length, //16
-	1.0f*width, 1.0f*height, -1.0f*length, //17
-	-1.0f*width, 1.0f*height, -1.0f*length, //18
-	-1.0f*width, -1.0f*height, -1.0f*length, //19
-
-	1.0f*width, -1.0f*height, 1.0f*length, //20
-	1.0f*width, 1.0f*height, 1.0f*length, //21
-	-1.0f*width, 1.0f*height, 1.0f*length, //22
-	-1.0f*width, -1.0f*height, 1.0f*length, //23
-}, {
-	0.0f, -1.0f, 0.0f,
-	0.0f, -1.0f, 0.0f,
-	0.0f, -1.0f, 0.0f,
-	0.0f, -1.0f, 0.0f,
-	0.0f, 1.0f, 0.0f,
-	0.0f, 1.0f, 0.0f,
-	0.0f, 1.0f, 0.0f,
-	0.0f, 1.0f, 0.0f,
-	-1.0f, 0.0f, 0.0f,
-	-1.0f, 0.0f, 0.0f,
-	-1.0f, 0.0f, 0.0f,
-	-1.0f, 0.0f, 0.0f,
-	1.0f, 0.0f, 0.0f,
-	1.0f, 0.0f, 0.0f,
-	1.0f, 0.0f, 0.0f,
-	1.0f, 0.0f, 0.0f,
-	0.0f, 0.0f, -1.0f,
-	0.0f, 0.0f, -1.0f,
-	0.0f, 0.0f, -1.0f,
-	0.0f, 0.0f, -1.0f,
-	0.0f, 0.0f, 1.0f,
-	0.0f, 0.0f, 1.0f,
-	0.0f, 0.0f, 1.0f,
-	0.0f, 0.0f, 1.0f
-}, {
-	0.0f, 0.0f,
-	1.0f, 0.0f,
-	1.0f, 1.0f,
-	0.0f, 1.0f,
-
-	0.0f, 0.0f,
-	1.0f, 0.0f,
-	1.0f, 1.0f,
-	0.0f, 1.0f,
-
-	0.0f, 0.0f,
-	1.0f, 0.0f,
-	1.0f, 1.0f,
-	0.0f, 1.0f,
-
-	0.0f, 0.0f,
-	1.0f, 0.0f,
-	1.0f, 1.0f,
-	0.0f, 1.0f,
-
-	0.0f, 0.0f,
-	1.0f, 0.0f,
-	1.0f, 1.0f,
-	0.0f, 1.0f,
-
-	0.0f, 0.0f,
-	1.0f, 0.0f,
-	1.0f, 1.0f,
-	0.0f, 1.0f
-
-
-}, {
-	0,1,2, 2,3,0,
-	4,6,5, 6,4,7,
-	8,10,9, 10,8,11,
-	12,13,14, 14,15,12,
-	16,18,17, 18,16,19,
-	20,21,22, 20,22,23
-})
-{
-	// Set texture units
-	compileShaders(vert, frag);
+	compileShaders("shaders/materialMapped.vert", "shaders/materialMapped.frag");
 	//Load Texture
 	glGenTextures(1, &diffuseMap);
 	glGenTextures(1, &specularMap);
@@ -140,24 +37,14 @@ TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length, const 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST_MIPMAP_NEAREST);
 	glBindTexture(GL_TEXTURE_2D, 0);
-	
+
 	shader->Use();
 	//set Texture location
 	glUniform1i(glGetUniformLocation(shader->get_programID(), "material.diffuse"), 0);
 	glUniform1i(glGetUniformLocation(shader->get_programID(), "material.specular"), 1);
-
 }
 
-TexturedCube::~TexturedCube()
-{
-}
-
-void TexturedCube::setShiness(GLfloat shiness)
-{
-	this->shiness = shiness;
-}
-
-void TexturedCube::setUniforms()
+void TexturedCyllinder::setUniforms()
 {
 	RawObject::setUniforms();
 

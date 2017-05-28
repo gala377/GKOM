@@ -1,4 +1,5 @@
 #version 330 core
+#define NR_LIGHTS 4
 
 struct Material {
     sampler2D diffuse;
@@ -26,16 +27,17 @@ out vec4 color;
   
 uniform vec3 viewPos;
 uniform Material material;
-uniform Light pointLights[NR_POINT_LIGHTS];
+uniform Light pointLights[NR_LIGHTS];
 
 vec3 CalcPointLight(Light light, vec3 normal, vec3 fragPos, vec3 viewDir);
 
 void main()
 {
     vec3 norm = normalize(Normal);
-	vec3 viewDor = normalize(viewPos - FragPos);
+	vec3 viewDir = normalize(viewPos - FragPos);
+	vec3 result = vec3(0, 0, 0);
 
-    for(int i = 0; i < NR_POINT_LIGHTS; i++)
+    for(int i = 0; i < NR_LIGHTS; i++)
         result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);   
     
 	color = vec4(result, 1.0f);
