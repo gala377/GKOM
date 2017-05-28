@@ -199,20 +199,22 @@ void Application::setUpSaw()
 
 void Application::setUpLogs()
 {
-	RawObject* log1 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
-	RawObject* log2 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
-	RawObject* log3 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
-	RawObject* log4 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
-	RawObject* log5 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
-	RawObject* log6 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
-	RawObject* log7 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
-	RawObject* log8 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
-	RawObject* log9 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
-	RawObject* log10 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
-	RawObject* log11 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
-	RawObject* log12 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
-	RawObject* log13 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
-	RawObject* log14 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log1 = ModelFactory::texturedCyllinder(0.5, 3, 12, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log2 = ModelFactory::texturedCyllinder(0.5, 3, 12, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log3 = ModelFactory::texturedCyllinder(0.5, 3, 12, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log4 = ModelFactory::texturedCyllinder(0.5, 3, 12, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log5 = ModelFactory::texturedCyllinder(0.5, 3, 12, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log6 = ModelFactory::texturedCyllinder(0.5, 3, 12, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log7 = ModelFactory::texturedCyllinder(0.5, 3, 12, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log8 = ModelFactory::texturedCyllinder(0.5, 3, 12, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log9 = ModelFactory::texturedCyllinder(0.5, 3, 12, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log10 = ModelFactory::texturedCyllinder(0.5, 3, 12, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log11 = ModelFactory::texturedCyllinder(0.5, 3, 12, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log12 = ModelFactory::texturedCyllinder(0.5, 3, 12, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log13 = ModelFactory::texturedCyllinder(0.5, 3, 12, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log14 = ModelFactory::texturedCyllinder(0.5, 3, 12, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log15 = ModelFactory::texturedCyllinder(0.5, 3, 12, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log16 = ModelFactory::texturedCyllinder(0.5, 3, 12, "textures/tree5.jpg", "textures/tree5.jpg", 8);
 
 	log1->translate(0, 0.7, -13);
 	log2->translate(1.2, 0.7, -13);
@@ -220,13 +222,18 @@ void Application::setUpLogs()
 	log4->translate(0.6, 1.5, -13);
 	log5->translate(-0.6, 1.5, -13);
 	log6->translate(0, 2.3, -13);
-	log8->translate(0, 2.3, -13);
-	log9->translate(0, 2.3, -13);
-	log10->translate(0, 2.3, -13);
-	log11->translate(0, 2.3, -13);
-	log12->translate(0, 2.3, -13);
-	log13->translate(0, 2.3, -13);
-	log14->translate(0, 2.3, -13);
+
+	log8->translate(2.4, 0.7, -13);
+	log9->translate(-2.4, 0.7, -13);
+	log10->translate(1.8, 1.5, -13);
+	log11->translate(-1.8, 1.5, -13);
+	log12->translate(1.2, 2.3, -13);
+	log13->translate(-1.2, 2.3, -13);
+	log14->translate(0.6, 3.1, -13);
+	
+	log15->translate(-0.6, 3.1, -13);
+	log16->translate(0, 3.9, -13);
+
 
 	log1->rotate(glm::radians(-90.0), 1, 0, 0);
 	log2->rotate(glm::radians(-90.0), 1, 0, 0);
@@ -240,7 +247,9 @@ void Application::setUpLogs()
 	log11->rotate(glm::radians(-90.0), 1, 0, 0);
 	log12->rotate(glm::radians(-90.0), 1, 0, 0);
 	log13->rotate(glm::radians(-90.0), 1, 0, 0);
-	log4->rotate(glm::radians(-90.0), 1, 0, 0);
+	log14->rotate(glm::radians(-90.0), 1, 0, 0);
+	log15->rotate(glm::radians(-90.0), 1, 0, 0);
+	log16->rotate(glm::radians(-90.0), 1, 0, 0);
 
 	layout->addObject(log1);
 	layout->addObject(log2);
@@ -248,7 +257,7 @@ void Application::setUpLogs()
 	layout->addObject(log4);
 	layout->addObject(log5);
 	layout->addObject(log6);
-	layout->addObject(log7);
+
 	layout->addObject(log8);
 	layout->addObject(log9);
 	layout->addObject(log10);
@@ -256,6 +265,8 @@ void Application::setUpLogs()
 	layout->addObject(log12);
 	layout->addObject(log13);
 	layout->addObject(log14);
+	layout->addObject(log15);
+	layout->addObject(log16);
 }
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
