@@ -29,6 +29,10 @@ private:
 	void renderAll();
 	friend void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
 	void setUpScene();
+
+	void setUpBase();
+	void setUpLight();
+	void setUpDetails();
 };
 
 extern bool keys[1024];

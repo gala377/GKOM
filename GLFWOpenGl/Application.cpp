@@ -73,14 +73,6 @@ void Application::initGLEW()
 void Application::Run()
 {
 
-	Light::addNewLight(glm::vec3(1, 5, 1), glm::vec3(0, 0, 0));
-	Light::addNewLight(glm::vec3(1, 5, 4), glm::vec3(0, 0, 0));
-	Light::addNewLight(glm::vec3(5, 5, 1), glm::vec3(0, 0, 0));
-	Light::addNewLight(glm::vec3(-2, 5, 4), glm::vec3(1, 1, 1));
-		
-	for (auto light : Light::lights)
-		layout->addObject(light);
-
 	setUpScene();
 
 	while (!glfwWindowShouldClose(screen->window))
@@ -107,21 +99,30 @@ void Application::renderAll()
 }
 void Application::setUpScene()
 {
-	RawObject* ground = ModelFactory::gnCube(100, 0.1, 100, glm::vec3(0.3, 0.3, 0.5), glm::vec3(0.3, 0.3, 0.5), glm::vec3(0.3, 0.3, 0.5), glm::vec3(1, 1, 1), 32);
+	setUpLight();
+	setUpBase();
+	setUpDetails();
 
+
+}
+
+void Application::setUpBase()
+{
+	RawObject* ground = ModelFactory::gnCube(100, 0.1, 100, glm::vec3(0.3, 0.3, 0.5), glm::vec3(0.3, 0.3, 0.5), glm::vec3(0.3, 0.3, 0.5), glm::vec3(1, 1, 1), 32);
+	layout->addObject(ground);
 
 	RawObject* base1 = ModelFactory::texturedCube(1.5, 1.5, 7.9, "textures/planks.jpg", "textures/planks.jpg", 16);
 	RawObject* base2 = ModelFactory::texturedCube(1.5, 1.5, 7.9, "textures/planks.jpg", "textures/planks.jpg", 16);
 	RawObject* base3 = ModelFactory::texturedCube(5, 1, 8, "textures/planks.jpg", "textures/planks.jpg", 16);
-	RawObject* base4 = ModelFactory::texturedCube(1, 1, 7.8, "textures/planks.jpg", "textures/planks.jpg", 16);
-	RawObject* base5 = ModelFactory::texturedCube(1, 1, 7.8, "textures/planks.jpg", "textures/planks.jpg", 16);
-	
+	RawObject* base4 = ModelFactory::texturedCube(0.65, 1, 7.89, "textures/planks.jpg", "textures/planks.jpg", 16);
+	RawObject* base5 = ModelFactory::texturedCube(0.65, 1, 7.89, "textures/planks.jpg", "textures/planks.jpg", 16);
+
 
 	base3->translate(0, 0.1, 0);
 	base1->translate(3.4, 0.1, 0);
 	base2->translate(-3.4, 0.1, 0);
-	base4->translate(1, 0.5, 0);
-	base5->translate(-1, 0.5, 0);
+	base4->translate(2.4, 0.5, 0);
+	base5->translate(-2.4, 0.5, 0);
 
 	base4->rotate(45, 0, 0, 1);
 	base5->rotate(-45, 0, 0, 1);
@@ -131,8 +132,29 @@ void Application::setUpScene()
 	layout->addObject(base3);
 	layout->addObject(base4);
 	layout->addObject(base5);
-	layout->addObject(ground);
+}
 
+void Application::setUpLight()
+{
+	Light::addNewLight(glm::vec3(1, 8, 1), glm::vec3(0, 0, 0));
+	Light::addNewLight(glm::vec3(1, 8, 4), glm::vec3(0, 0, 0));
+	Light::addNewLight(glm::vec3(5, 8, 1), glm::vec3(0, 0, 0));
+	Light::addNewLight(glm::vec3(-2, 8, 4), glm::vec3(1, 1, 1));
+
+	for (auto light : Light::lights)
+		layout->addObject(light);
+}
+
+void Application::setUpDetails()
+{
+	RawObject* pole1 = ModelFactory::texturedCyllinder(0.5, 1, 32, "textures/metal.jpg", "texture/metal.jpg", 64);
+	RawObject* pole2 = ModelFactory::texturedCyllinder(0.5, 1, 32, "textures/metal.jpg", "texture/metal.jpg", 64);
+	
+	pole1->translate(2, 0.5, 2);
+	pole2->translate(2, 0.5, 2);
+
+	layout->addObject(pole1);
+	layout->addObject(pole2);
 }
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
