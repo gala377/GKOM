@@ -7,3 +7,5 @@
 #include "SolidColorCyllinder.h"
 #include "GNCube.h"
 #include "TexturedCube.h"
+#include "GNCyllinder.h"
+#include "TexturedCyllinder.h"

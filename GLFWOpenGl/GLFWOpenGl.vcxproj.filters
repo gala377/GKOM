@@ -78,6 +78,9 @@
     <ClCompile Include="Objects\TexturedCyllinder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\GNCyllinder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainWindow.h">
@@ -144,6 +147,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Objects\TexturedCyllinder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GNCyllinder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
