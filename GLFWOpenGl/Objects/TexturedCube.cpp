@@ -1,4 +1,5 @@
 #include "TexturedCube.h"
+#include "Light.h"
 #include <SOIL.h>
 
 TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length) :
@@ -116,7 +117,6 @@ TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length, const 
 })
 {
 	//Load Texture
-	GLuint diffuseMap;
 	glGenTextures(1, &diffuseMap);
 	int textWidth, textHeight;
 	unsigned char* image;
@@ -165,7 +165,6 @@ void TexturedCube::setUniforms()
 	GLint lightSpecularLoc = glGetUniformLocation(shader->get_programID(), "light.specular");
 	GLint lightPosLoc = glGetUniformLocation(shader->get_programID(), "light.position");
 
-	glUniform3f(matDiffuseLoc, diffuse.x, diffuse.y, diffuse.z);
 	glUniform3f(matSpecularLoc, specular.x, specular.y, specular.z);
 	glUniform1f(matShineLoc, shiness);
 
@@ -179,4 +178,7 @@ void TexturedCube::setUniforms()
 		glUniform3f(lightDiffuseLoc, light->diffuse.x, light->diffuse.y, light->diffuse.z);
 		glUniform3f(lightSpecularLoc, light->specular.x, light->specular.y, light->specular.z);
 	}
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, diffuseMap);
 }

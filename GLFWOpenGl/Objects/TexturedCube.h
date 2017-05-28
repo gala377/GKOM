@@ -16,6 +16,8 @@ private:
 	glm::vec3 diffuse;
 	glm::vec3 specular;
 	GLfloat shiness;
+
+	GLuint diffuseMap;
 	void setUniforms();
 };
 
