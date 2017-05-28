@@ -74,6 +74,9 @@ void Application::Run()
 {
 
 	Light::addNewLight(glm::vec3(1, 3, 1), glm::vec3(1, 1, 1));
+	Light::addNewLight(glm::vec3(1, 2, 2), glm::vec3(1, 1, 1));
+	Light::addNewLight(glm::vec3(2, 3, 1), glm::vec3(1, 1, 1));
+	Light::addNewLight(glm::vec3(2, 1, 3), glm::vec3(1, 0, 0), glm::vec3(1, 0, 0), glm::vec3(1, 1, 1), 1, 1, 0);
 		
 	for (auto light : Light::lights)
 		layout->addObject(light);

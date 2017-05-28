@@ -176,13 +176,13 @@ void TexturedCube::setUniforms()
 		std::string index = std::to_string(i);
 		std::string fullName = tableName + "[" + index + "].";
 		std::cout << fullName << "\n";
-		glUniform3f(glGetUniformLocation(shader->get_programID(), (fullName + "position").c_str), Light::lights[i]->getPosition().x, Light::lights[i]->getPosition().y, Light::lights[i]->getPosition().z);
-		glUniform3f(glGetUniformLocation(shader->get_programID(), (fullName + "ambient").c_str), Light::lights[i]->ambient.x, Light::lights[i]->ambient.y, Light::lights[i]->ambient.z);
-		glUniform3f(glGetUniformLocation(shader->get_programID(), (fullName + "diffuse").c_str), Light::lights[i]->diffuse.x, Light::lights[i]->diffuse.y, Light::lights[i]->diffuse.z);
-		glUniform3f(glGetUniformLocation(shader->get_programID(), (fullName + "specular").c_str), Light::lights[i]->specular.x, Light::lights[i]->specular.y, Light::lights[i]->specular.z);
-		glUniform1f(glGetUniformLocation(shader->get_programID(), (fullName + "constant").c_str), Light::lights[i]->constant);
-		glUniform1f(glGetUniformLocation(shader->get_programID(), (fullName + "linear").c_str), Light::lights[i]->linear);
-		glUniform1f(glGetUniformLocation(shader->get_programID(), (fullName + "quadratic").c_str), Light::lights[i]->quadratic);
+		glUniform3f(glGetUniformLocation(shader->get_programID(), (fullName + "position").c_str()), Light::lights[i]->getPosition().x, Light::lights[i]->getPosition().y, Light::lights[i]->getPosition().z);
+		glUniform3f(glGetUniformLocation(shader->get_programID(), (fullName + "ambient").c_str()), Light::lights[i]->ambient.x, Light::lights[i]->ambient.y, Light::lights[i]->ambient.z);
+		glUniform3f(glGetUniformLocation(shader->get_programID(), (fullName + "diffuse").c_str()), Light::lights[i]->diffuse.x, Light::lights[i]->diffuse.y, Light::lights[i]->diffuse.z);
+		glUniform3f(glGetUniformLocation(shader->get_programID(), (fullName + "specular").c_str()), Light::lights[i]->specular.x, Light::lights[i]->specular.y, Light::lights[i]->specular.z);
+		glUniform1f(glGetUniformLocation(shader->get_programID(), (fullName + "constant").c_str()), Light::lights[i]->constant);
+		glUniform1f(glGetUniformLocation(shader->get_programID(), (fullName + "linear").c_str()), Light::lights[i]->linear);
+		glUniform1f(glGetUniformLocation(shader->get_programID(), (fullName + "quadratic").c_str()), Light::lights[i]->quadratic);
 	}
 
 	// Bind diffuse map
