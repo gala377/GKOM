@@ -357,10 +357,13 @@ RawObject * ModelFactory::texturedCyllinder(GLfloat radius, GLfloat height, GLui
 	points[0] = glm::vec3(radius, height, 0);
 	points[1] = glm::vec3(radius, -height, 0);
 	GLfloat angle = 360.0f / (GLfloat)segments;
+	GLfloat uvStep = 1.0f / (GLfloat)segments;
+	GLfloat currentUV = 0.0f;
 
 	std::vector<GLfloat> vertices;
 	std::vector<GLfloat> normals;
 	std::vector<GLuint> indices;
+	std::vector<GLfloat> uvis;
 
 	glm::mat4 rotation = glm::mat4(1.0f);
 	rotation = glm::rotate(rotation, glm::radians(angle), glm::vec3(0, 1, 0));
@@ -381,6 +384,12 @@ RawObject * ModelFactory::texturedCyllinder(GLfloat radius, GLfloat height, GLui
 		normals.push_back(0);
 		normals.push_back(-1);
 		normals.push_back(0);
+
+		uvis.push_back(0);
+		uvis.push_back(0);
+
+		uvis.push_back(0);
+		uvis.push_back(0);
 
 	}
 
@@ -420,30 +429,57 @@ RawObject * ModelFactory::texturedCyllinder(GLfloat radius, GLfloat height, GLui
 
 		}
 
-		//wall
-		indices.push_back(0 + (i * 8) + 2);
-		indices.push_back(1 + (i * 8) + 2);
-		indices.push_back(2 + (i * 8) + 2);
-		indices.push_back(1 + (i * 8) + 2);
-		indices.push_back(2 + (i * 8) + 2);
-		indices.push_back(3 + (i * 8) + 2);
+		{
+			uvis.push_back(currentUV);
+			uvis.push_back(1);
 
-		//caps 
-		indices.push_back(4 + (i * 8) + 2);
-		indices.push_back(6 + (i * 8) + 2);
-		indices.push_back(0);
-		indices.push_back(5 + (i * 8) + 2);
-		indices.push_back(7 + (i * 8) + 2);
-		indices.push_back(1);
+			uvis.push_back(currentUV);
+			uvis.push_back(0);
 
+			uvis.push_back(currentUV + uvStep);
+			uvis.push_back(1);
 
+			uvis.push_back(currentUV + uvStep);
+			uvis.push_back(0);
+
+			uvis.push_back(0);
+			uvis.push_back(1);
+
+			uvis.push_back(1);
+			uvis.push_back(1);
+
+			uvis.push_back(0);
+			uvis.push_back(1);
+
+			uvis.push_back(1);
+			uvis.push_back(1);
+		}
+
+		{
+			//wall
+			indices.push_back(0 + (i * 8) + 2);
+			indices.push_back(1 + (i * 8) + 2);
+			indices.push_back(2 + (i * 8) + 2);
+			indices.push_back(1 + (i * 8) + 2);
+			indices.push_back(2 + (i * 8) + 2);
+			indices.push_back(3 + (i * 8) + 2);
+
+			//caps 
+			indices.push_back(4 + (i * 8) + 2);
+			indices.push_back(6 + (i * 8) + 2);
+			indices.push_back(0);
+			indices.push_back(5 + (i * 8) + 2);
+			indices.push_back(7 + (i * 8) + 2);
+			indices.push_back(1);
+
+		}
 		points[0] = points[2];
 		points[1] = points[3];
+		currentUV += uvStep;
 	}
 
-	TexturedCyllinder* cyllinder = new TexturedCyllinder(vertices, normals, indices);
+	TexturedCyllinder* cyllinder = new TexturedCyllinder(vertices, normals,	uvis, indices);
 	cyllinder->setMaterial(diffTexture, specTexture, shiness);
-	cyllinder->compileShaders("shaders/materialMapped.vert", "shaders/materialMapped.frag");
 
 	return cyllinder;
 }

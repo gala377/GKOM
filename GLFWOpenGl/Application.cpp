@@ -92,9 +92,19 @@ void Application::Run()
 	RawObject* test2 = ModelFactory::texturedCube(1, 1, 1, "textures/wood.png", "textures/woodSpecular.png", 32);
 	test2->translate(5, 2, 5);
 
+	RawObject* test3 = ModelFactory::gnCyllinder(0.2, 1, 16, 
+		glm::vec3(0.15, 0.5, 0.5), glm::vec3(0, 0.7, 0.7), glm::vec3(0, 1, 0.5), 128);
+	test3->translate(-3, 2, -3);
+
+	RawObject* test4 = ModelFactory::texturedCyllinder(0.2, 1, 32, "textures/tree2.png", "textures/tree2.png", 16);
+	test4->translate(4.5, 2, 4.5);
+
+
 	test->translate(-5, 1, -5);
 	layout->addObject(test);	
+	layout->addObject(test3);
 	layout->addObject(test2);
+	layout->addObject(test4);
 
 	c3->translate(0.5, 0, 0);
 	c4->translate(-0.5, 0, 0);
