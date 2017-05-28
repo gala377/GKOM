@@ -110,7 +110,7 @@ void Application::setUpScene()
 
 void Application::setUpBase()
 {
-	RawObject* ground = ModelFactory::texturedCube(15, 0.1, 20, "textures/ground2.jpg", "textures/ground2.jpg", 16);
+	RawObject* ground = ModelFactory::texturedCube(15, 0.1, 20, "textures/ground3.jpg", "textures/ground3.jpg", 16);
 	layout->addObject(ground);
 
 	RawObject* base1 = ModelFactory::texturedCube(1.5, 1.5, 7.9, "textures/planks.jpg", "textures/planks.jpg", 16);
@@ -199,27 +199,63 @@ void Application::setUpSaw()
 
 void Application::setUpLogs()
 {
-	RawObject* log1 = ModelFactory::texturedCyllinder(0.1, 4, 32, "textures/tree5.jpg", "textures/tree5.jpg", 16);
-	//RawObject* log2 = ModelFactory::texturedCyllinder(0.1, 4, 32, "textures/tree4.jpg", "textures/tree4.jpg", 16);
-	//RawObject* log3 = ModelFactory::texturedCyllinder(0.1, 4, 32, "textures/tree4.jpg", "textures/tree4.jpg", 16);
-	//RawObject* log4 = ModelFactory::texturedCyllinder(0.1, 4, 32, "textures/tree4.jpg", "textures/tree4.jpg", 16);
-	//RawObject* log5 = ModelFactory::texturedCyllinder(0.1, 4, 32, "textures/tree4.jpg", "textures/tree4.jpg", 16);
-	//RawObject* log6 = ModelFactory::texturedCyllinder(0.1, 4, 32, "textures/tree4.jpg", "textures/tree4.jpg", 16);
-	//RawObject* log7 = ModelFactory::texturedCyllinder(0.1, 4, 32, "textures/tree4.jpg", "textures/tree4.jpg", 16);
+	RawObject* log1 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log2 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log3 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log4 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log5 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log6 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log7 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log8 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log9 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log10 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log11 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log12 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log13 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log14 = ModelFactory::texturedCyllinder(0.5, 3, 16, "textures/tree5.jpg", "textures/tree5.jpg", 8);
 
-	log1->translate(0, 0.05, 10);
-	//log2->translate(0.1, 0.05, 10);
-	//log3->translate(-0.1, 0.05, 10);
-	//log4->translate(0.05, 0.15, 10);
-	//log5->translate(-0.05, 0.15, 10);
-	//log6->translate(0,0.25,10);
+	log1->translate(0, 0.7, -13);
+	log2->translate(1.2, 0.7, -13);
+	log3->translate(-1.2, 0.7, -13);
+	log4->translate(0.6, 1.5, -13);
+	log5->translate(-0.6, 1.5, -13);
+	log6->translate(0, 2.3, -13);
+	log8->translate(0, 2.3, -13);
+	log9->translate(0, 2.3, -13);
+	log10->translate(0, 2.3, -13);
+	log11->translate(0, 2.3, -13);
+	log12->translate(0, 2.3, -13);
+	log13->translate(0, 2.3, -13);
+	log14->translate(0, 2.3, -13);
+
+	log1->rotate(glm::radians(-90.0), 1, 0, 0);
+	log2->rotate(glm::radians(-90.0), 1, 0, 0);
+	log3->rotate(glm::radians(-90.0), 1, 0, 0);
+	log4->rotate(glm::radians(-90.0), 1, 0, 0);
+	log5->rotate(glm::radians(-90.0), 1, 0, 0);
+	log6->rotate(glm::radians(-90.0), 1, 0, 0);
+	log8->rotate(glm::radians(-90.0), 1, 0, 0);
+	log9->rotate(glm::radians(-90.0), 1, 0, 0);
+	log10->rotate(glm::radians(-90.0), 1, 0, 0);
+	log11->rotate(glm::radians(-90.0), 1, 0, 0);
+	log12->rotate(glm::radians(-90.0), 1, 0, 0);
+	log13->rotate(glm::radians(-90.0), 1, 0, 0);
+	log4->rotate(glm::radians(-90.0), 1, 0, 0);
 
 	layout->addObject(log1);
-	//layout->addObject(log2);
-	//layout->addObject(log3);
-	//layout->addObject(log4);
-	//layout->addObject(log5);
-	//layout->addObject(log6);
+	layout->addObject(log2);
+	layout->addObject(log3);
+	layout->addObject(log4);
+	layout->addObject(log5);
+	layout->addObject(log6);
+	layout->addObject(log7);
+	layout->addObject(log8);
+	layout->addObject(log9);
+	layout->addObject(log10);
+	layout->addObject(log11);
+	layout->addObject(log12);
+	layout->addObject(log13);
+	layout->addObject(log14);
 }
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
