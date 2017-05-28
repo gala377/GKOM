@@ -152,11 +152,8 @@ TexturedCube::~TexturedCube()
 {
 }
 
-
-void TexturedCube::setMaterial(glm::vec3 diffColor, glm::vec3 specColor, GLfloat shiness)
+void TexturedCube::setShiness(GLfloat shiness)
 {
-	diffuse = diffColor;
-	specular = specColor;
 	this->shiness = shiness;
 }
 
@@ -167,7 +164,6 @@ void TexturedCube::setUniforms()
 
 	GLint viewPosLoc = glGetUniformLocation(shader->get_programID(), "viewPos");
 
-	GLint matSpecularLoc = glGetUniformLocation(shader->get_programID(), "material.specular");
 	GLint matShineLoc = glGetUniformLocation(shader->get_programID(), "material.shininess");
 
 	GLint lightAmbientLoc = glGetUniformLocation(shader->get_programID(), "light.ambient");
@@ -175,7 +171,6 @@ void TexturedCube::setUniforms()
 	GLint lightSpecularLoc = glGetUniformLocation(shader->get_programID(), "light.specular");
 	GLint lightPosLoc = glGetUniformLocation(shader->get_programID(), "light.position");
 
-	glUniform3f(matSpecularLoc, specular.x, specular.y, specular.z);
 	glUniform1f(matShineLoc, shiness);
 
 	glUniform3f(viewPosLoc, mainCamera.cameraPos.x, mainCamera.cameraPos.y, mainCamera.cameraPos.z);

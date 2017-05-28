@@ -244,3 +244,10 @@ RawObject * ModelFactory::gnCube(GLfloat width, GLfloat height, GLfloat length, 
 	obj->setMaterial(ambientColor, diffColor, specColor, shiness);
 	return obj;
 }
+
+RawObject * ModelFactory::texturedCube(GLfloat width, GLfloat height, GLfloat length, const char* diffTexture, const char* specTexture, GLfloat shiness=32)
+{
+	TexturedCube* cube = new TexturedCube(width, height, length, diffTexture, specTexture);
+	cube->setShiness(shiness);
+	return cube;
+}

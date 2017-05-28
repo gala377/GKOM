@@ -11,10 +11,8 @@ public:
 	TexturedCube(GLfloat width, GLfloat height, GLfloat length, const char* vert, const char* frag, const char* diffText, const char* specText);
 	~TexturedCube();
 
-	void setMaterial(glm::vec3 diffColor, glm::vec3 specColor, GLfloat shiness);
+	void setShiness(GLfloat shiness);
 private:
-	glm::vec3 diffuse;
-	glm::vec3 specular;
 	GLfloat shiness;
 
 	GLuint diffuseMap;

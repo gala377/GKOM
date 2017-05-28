@@ -86,9 +86,8 @@ void Application::Run()
 	RawObject* test = ModelFactory::gnCube(0.7, 0.7, 0.7, glm::vec3(0, 0.7, 0.7), 
 		glm::vec3(0.15, 0.5, 0.5), glm::vec3(0, 0.7, 0.7), glm::vec3(0, 1, 0.5), 128);
 
-	TexturedCube* test2 = new TexturedCube(1, 1, 1);
-	test2->setMaterial(glm::vec3(0, 0.7, 0.7), glm::vec3(0, 1, 0.5), 128);
-	test2->translate(5, 0, 5);
+	RawObject* test2 = ModelFactory::texturedCube(1, 1, 1, "textures/wood.png", "textures/woodSpecular.png", 32);
+	test2->translate(5, 2, 5);
 
 	test->translate(2, 1.5, 1);
 	layout->addObject(test);	
