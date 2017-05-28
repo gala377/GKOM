@@ -73,6 +73,7 @@ RawObject::RawObject(std::vector<GLfloat> verts, std::vector<GLfloat> normals, s
 RawObject::RawObject(std::vector<GLfloat> verts, std::vector<GLfloat> normals, std::vector<GLfloat> textCors, std::vector<GLuint> indics) : RawObject()
 {
 	indices = std::move(indics);
+	std::cout << "New Textured Raw Object: \n";
 	for (int i = 0; i < (verts.size() / 3); i++)
 	{
 		for (int j = i * 3; j < i * 3 + 3; j++)

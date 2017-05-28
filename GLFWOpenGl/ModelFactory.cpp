@@ -431,25 +431,26 @@ RawObject * ModelFactory::texturedCyllinder(GLfloat radius, GLfloat height, GLui
 
 		{
 			uvis.push_back(currentUV);
-			uvis.push_back(1);
+			uvis.push_back(0);
 
 			uvis.push_back(currentUV);
-			uvis.push_back(0);
-
-			uvis.push_back(currentUV + uvStep);
 			uvis.push_back(1);
 
 			uvis.push_back(currentUV + uvStep);
 			uvis.push_back(0);
 
-			uvis.push_back(0);
+			uvis.push_back(currentUV + uvStep);
 			uvis.push_back(1);
+
+
+			uvis.push_back(0);
+			uvis.push_back(0);
 
 			uvis.push_back(1);
 			uvis.push_back(1);
 
 			uvis.push_back(0);
-			uvis.push_back(1);
+			uvis.push_back(0);
 
 			uvis.push_back(1);
 			uvis.push_back(1);

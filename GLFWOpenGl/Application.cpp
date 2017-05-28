@@ -73,47 +73,15 @@ void Application::initGLEW()
 void Application::Run()
 {
 
-	Light::addNewLight(glm::vec3(1, 3, 1), glm::vec3(1, 1, 0));
-	Light::addNewLight(glm::vec3(1, 2, 2), glm::vec3(1, 1, 0));
-	Light::addNewLight(glm::vec3(2, 3, 1), glm::vec3(1, 1, 0));
-	Light::addNewLight(glm::vec3(2, 1, 3), glm::vec3(1, 1, 0), glm::vec3(1, 0, 0), glm::vec3(1, 1, 1), 1, 1, 0);
+	Light::addNewLight(glm::vec3(1, 5, 1), glm::vec3(0, 0, 0));
+	Light::addNewLight(glm::vec3(1, 5, 4), glm::vec3(0, 0, 0));
+	Light::addNewLight(glm::vec3(5, 5, 1), glm::vec3(0, 0, 0));
+	Light::addNewLight(glm::vec3(-2, 5, 4), glm::vec3(1, 1, 1));
 		
 	for (auto light : Light::lights)
 		layout->addObject(light);
 
-	RawObject* c1 = ModelFactory::solidColorCube(100, 0.1, 100, glm::vec3(0, 1, 0.2));
-	RawObject* c2 = ModelFactory::solidColorCube(1, 0.4, 1.5, glm::vec3(0.8, 0.3, 0.2));
-	RawObject* c3 = ModelFactory::solidColorCyllinder(0.1, 2, 36, glm::vec3(0.7, 0.5, 0.6));
-	RawObject* c4 = ModelFactory::solidColorCyllinder(0.1, 2, 36, glm::vec3(0.7, 0.5, 0.6));
-
-	RawObject* test = ModelFactory::gnCube(0.7, 0.7, 0.7, glm::vec3(0, 0.7, 0.7), 
-		glm::vec3(0.15, 0.5, 0.5), glm::vec3(0, 0.7, 0.7), glm::vec3(0, 1, 0.5), 128);
-
-	RawObject* test2 = ModelFactory::texturedCube(1, 1, 1, "textures/wood.png", "textures/woodSpecular.png", 32);
-	test2->translate(5, 2, 5);
-
-	RawObject* test3 = ModelFactory::gnCyllinder(0.2, 1, 16, 
-		glm::vec3(0.15, 0.5, 0.5), glm::vec3(0, 0.7, 0.7), glm::vec3(0, 1, 0.5), 128);
-	test3->translate(-3, 2, -3);
-
-	RawObject* test4 = ModelFactory::texturedCyllinder(0.2, 1, 32, "textures/tree2.png", "textures/tree2.png", 16);
-	test4->translate(4.5, 2, 4.5);
-
-
-	test->translate(-5, 1, -5);
-	layout->addObject(test);	
-	layout->addObject(test3);
-	layout->addObject(test2);
-	layout->addObject(test4);
-
-	c3->translate(0.5, 0, 0);
-	c4->translate(-0.5, 0, 0);
-
-
-	layout->addObject(c1);
-	layout->addObject(c2);
-	layout->addObject(c3);
-	layout->addObject(c4);
+	setUpScene();
 
 	while (!glfwWindowShouldClose(screen->window))
 	{
@@ -136,7 +104,36 @@ void Application::renderAll()
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	layout->Draw();
-};
+}
+void Application::setUpScene()
+{
+	RawObject* ground = ModelFactory::gnCube(100, 0.1, 100, glm::vec3(0.3, 0.3, 0.5), glm::vec3(0.3, 0.3, 0.5), glm::vec3(0.3, 0.3, 0.5), glm::vec3(1, 1, 1), 32);
+
+
+	RawObject* base1 = ModelFactory::texturedCube(1.5, 1.5, 7.9, "textures/planks.jpg", "textures/planks.jpg", 16);
+	RawObject* base2 = ModelFactory::texturedCube(1.5, 1.5, 7.9, "textures/planks.jpg", "textures/planks.jpg", 16);
+	RawObject* base3 = ModelFactory::texturedCube(5, 1, 8, "textures/planks.jpg", "textures/planks.jpg", 16);
+	RawObject* base4 = ModelFactory::texturedCube(1, 1, 7.8, "textures/planks.jpg", "textures/planks.jpg", 16);
+	RawObject* base5 = ModelFactory::texturedCube(1, 1, 7.8, "textures/planks.jpg", "textures/planks.jpg", 16);
+	
+
+	base3->translate(0, 0.1, 0);
+	base1->translate(3.4, 0.1, 0);
+	base2->translate(-3.4, 0.1, 0);
+	base4->translate(1, 0.5, 0);
+	base5->translate(-1, 0.5, 0);
+
+	base4->rotate(45, 0, 0, 1);
+	base5->rotate(-45, 0, 0, 1);
+
+	layout->addObject(base1);
+	layout->addObject(base2);
+	layout->addObject(base3);
+	layout->addObject(base4);
+	layout->addObject(base5);
+	layout->addObject(ground);
+
+}
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {

@@ -42,6 +42,8 @@ void TexturedCyllinder::setMaterial(const char * diffText, const char * specText
 	//set Texture location
 	glUniform1i(glGetUniformLocation(shader->get_programID(), "material.diffuse"), 0);
 	glUniform1i(glGetUniformLocation(shader->get_programID(), "material.specular"), 1);
+
+	this->shiness = shiness;
 }
 
 void TexturedCyllinder::setUniforms()
