@@ -33,6 +33,10 @@ private:
 	void setUpBase();
 	void setUpLight();
 	void setUpDetails();
+	void setUpHouse();
+	void setUpSaw();
+	void setUpLogs();
+
 };
 
 extern bool keys[1024];

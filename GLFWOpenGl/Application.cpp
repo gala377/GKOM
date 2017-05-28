@@ -102,13 +102,15 @@ void Application::setUpScene()
 	setUpLight();
 	setUpBase();
 	setUpDetails();
-
+	setUpSaw();
+	setUpHouse();
+	setUpLogs();
 
 }
 
 void Application::setUpBase()
 {
-	RawObject* ground = ModelFactory::gnCube(100, 0.1, 100, glm::vec3(0.3, 0.3, 0.5), glm::vec3(0.3, 0.3, 0.5), glm::vec3(0.3, 0.3, 0.5), glm::vec3(1, 1, 1), 32);
+	RawObject* ground = ModelFactory::texturedCube(15, 0.1, 20, "textures/ground2.jpg", "textures/ground2.jpg", 16);
 	layout->addObject(ground);
 
 	RawObject* base1 = ModelFactory::texturedCube(1.5, 1.5, 7.9, "textures/planks.jpg", "textures/planks.jpg", 16);
@@ -136,10 +138,10 @@ void Application::setUpBase()
 
 void Application::setUpLight()
 {
-	Light::addNewLight(glm::vec3(1, 8, 1), glm::vec3(0, 0, 0));
+	Light::addNewLight(glm::vec3(10, 8, 7), glm::vec3(0, 0, 0));
 	Light::addNewLight(glm::vec3(1, 8, 4), glm::vec3(0, 0, 0));
-	Light::addNewLight(glm::vec3(5, 8, 1), glm::vec3(0, 0, 0));
-	Light::addNewLight(glm::vec3(-2, 8, 4), glm::vec3(1, 1, 1));
+	Light::addNewLight(glm::vec3(-7, 8, -4), glm::vec3(0, 0, 0));
+	Light::addNewLight(glm::vec3(-8, 8, 9), glm::vec3(1, 1, 1));
 
 	for (auto light : Light::lights)
 		layout->addObject(light);
@@ -155,6 +157,69 @@ void Application::setUpDetails()
 
 	layout->addObject(pole1);
 	layout->addObject(pole2);
+
+}
+
+void Application::setUpHouse()
+{
+	RawObject* wall1 = ModelFactory::texturedCube(15, 8, 0.4, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
+	RawObject* wall2 = ModelFactory::texturedCube(4, 8, 0.4, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
+	RawObject* wall3 = ModelFactory::texturedCube(4, 8, 0.4, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
+	RawObject* wall4 = ModelFactory::texturedCube(9, 4, 0.4, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
+	RawObject* wall5 = ModelFactory::texturedCube(0.4, 8, 20, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
+	RawObject* wall6 = ModelFactory::texturedCube(0.4, 8, 20, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
+
+	wall1->translate(0, 8, -20);
+	
+	wall2->translate(13, 8, 20);
+	wall3->translate(-13, 8, 20);
+	wall4->translate(0, 12, 20);
+	
+	wall5->translate(-15, 8, 0);
+	wall6->translate(15, 8, 0);
+	
+
+
+	layout->addObject(wall1);
+	layout->addObject(wall2);
+	layout->addObject(wall3);
+	layout->addObject(wall4);
+	layout->addObject(wall5);
+	layout->addObject(wall6);
+}
+
+void Application::setUpSaw()
+{
+	RawObject* saw = ModelFactory::gnCube(2.3, 0.3, 0.01, glm::vec3(0.8, 0.8, 0.8), glm::vec3(0.8, 0.8, 0.8), glm::vec3(0.8, 0.8, 0.8), glm::vec3(1, 1, 1), 256);
+
+	saw->translate(0, 8.5, 2);
+	layout->addObject(saw);
+
+}
+
+void Application::setUpLogs()
+{
+	RawObject* log1 = ModelFactory::texturedCyllinder(0.1, 4, 32, "textures/tree5.jpg", "textures/tree5.jpg", 16);
+	//RawObject* log2 = ModelFactory::texturedCyllinder(0.1, 4, 32, "textures/tree4.jpg", "textures/tree4.jpg", 16);
+	//RawObject* log3 = ModelFactory::texturedCyllinder(0.1, 4, 32, "textures/tree4.jpg", "textures/tree4.jpg", 16);
+	//RawObject* log4 = ModelFactory::texturedCyllinder(0.1, 4, 32, "textures/tree4.jpg", "textures/tree4.jpg", 16);
+	//RawObject* log5 = ModelFactory::texturedCyllinder(0.1, 4, 32, "textures/tree4.jpg", "textures/tree4.jpg", 16);
+	//RawObject* log6 = ModelFactory::texturedCyllinder(0.1, 4, 32, "textures/tree4.jpg", "textures/tree4.jpg", 16);
+	//RawObject* log7 = ModelFactory::texturedCyllinder(0.1, 4, 32, "textures/tree4.jpg", "textures/tree4.jpg", 16);
+
+	log1->translate(0, 0.05, 10);
+	//log2->translate(0.1, 0.05, 10);
+	//log3->translate(-0.1, 0.05, 10);
+	//log4->translate(0.05, 0.15, 10);
+	//log5->translate(-0.05, 0.15, 10);
+	//log6->translate(0,0.25,10);
+
+	layout->addObject(log1);
+	//layout->addObject(log2);
+	//layout->addObject(log3);
+	//layout->addObject(log4);
+	//layout->addObject(log5);
+	//layout->addObject(log6);
 }
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
