@@ -18,6 +18,7 @@ private:
 	GLfloat shiness;
 
 	GLuint diffuseMap;
+	GLuint	specularMap;
 	void setUniforms();
 };
 

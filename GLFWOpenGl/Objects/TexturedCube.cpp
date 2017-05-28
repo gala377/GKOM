@@ -113,6 +113,8 @@ TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length, const 
 	compileShaders(vert, frag);
 	//Load Texture
 	glGenTextures(1, &diffuseMap);
+	glGenTextures(1, &specularMap);
+
 	int textWidth, textHeight;
 	unsigned char* image;
 	// Diffuse map
@@ -127,11 +129,22 @@ TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length, const 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+	//Specular Map
+	image = SOIL_load_image(specText, &textWidth, &textHeight, 0, SOIL_LOAD_RGB);
+	glBindTexture(GL_TEXTURE_2D, specularMap);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textWidth, textHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	SOIL_free_image_data(image);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST_MIPMAP_NEAREST);
 	glBindTexture(GL_TEXTURE_2D, 0);
 	
 	shader->Use();
 	//set Texture location
 	glUniform1i(glGetUniformLocation(shader->get_programID(), "material.diffuse"), 0);
+	glUniform1i(glGetUniformLocation(shader->get_programID(), "material.specular"), 1);
 
 }
 
@@ -176,6 +189,10 @@ void TexturedCube::setUniforms()
 		glUniform3f(lightSpecularLoc, light->specular.x, light->specular.y, light->specular.z);
 	}
 
+	// Bind diffuse map
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, diffuseMap);
+	// Bind specular map
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, specularMap);
 }
