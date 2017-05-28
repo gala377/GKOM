@@ -70,7 +70,7 @@ RawObject::RawObject(std::vector<GLfloat> verts, std::vector<GLfloat> normals, s
 	glBindVertexArray(0);
 }
 
-RawObject::RawObject(std::vector<GLfloat> verts, std::vector<GLfloat> normals, std::vector<GLfloat> textCors, std::vector<GLuint> indics)
+RawObject::RawObject(std::vector<GLfloat> verts, std::vector<GLfloat> normals, std::vector<GLfloat> textCors, std::vector<GLuint> indics) : RawObject()
 {
 	indices = std::move(indics);
 	for (int i = 0; i < (verts.size() / 3); i++)

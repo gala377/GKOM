@@ -124,8 +124,10 @@ TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length, const 
 	unsigned char* image;
 	// Diffuse map
 	image = SOIL_load_image(texture, &textWidth, &textHeight, 0, SOIL_LOAD_RGB);
+	if (image == nullptr)
+		throw std::runtime_error("Could not find texture");
 	glBindTexture(GL_TEXTURE_2D, diffuseMap);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textWidth, textHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
 	glGenerateMipmap(GL_TEXTURE_2D);
 	SOIL_free_image_data(image);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -133,12 +135,17 @@ TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length, const 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST_MIPMAP_NEAREST);
 	glBindTexture(GL_TEXTURE_2D, 0);
+	
+	shader->Use();
+	//set Texture location
+	glUniform1i(glGetUniformLocation(shader->get_programID(), "material.diffuse"), 0);
 
 }
 
 TexturedCube::~TexturedCube()
 {
 }
+
 
 void TexturedCube::setMaterial(glm::vec3 diffColor, glm::vec3 specColor, GLfloat shiness)
 {
@@ -151,8 +158,6 @@ void TexturedCube::setUniforms()
 {
 	RawObject::setUniforms();
 
-	//set Texture location
-	glUniform1i(glGetUniformLocation(shader->get_programID(), "material.diffuse"), 0);
 
 	GLint viewPosLoc = glGetUniformLocation(shader->get_programID(), "viewPos");
 
