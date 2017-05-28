@@ -70,6 +70,47 @@ RawObject::RawObject(std::vector<GLfloat> verts, std::vector<GLfloat> normals, s
 	glBindVertexArray(0);
 }
 
+RawObject::RawObject(std::vector<GLfloat> verts, std::vector<GLfloat> normals, std::vector<GLfloat> textCors, std::vector<GLuint> indics)
+{
+	indices = std::move(indics);
+	for (int i = 0; i < (verts.size() / 3); i++)
+	{
+		for (int j = i * 3; j < i * 3 + 3; j++)
+		{
+			vertices.push_back(verts[j]);
+			//std::cout << " " << verts[j] << ",";
+		}
+		for (int j = i * 3; j < i * 3 + 3; j++)
+		{
+			vertices.push_back(normals[j]);
+			//std::cout << " " << normals[j] << ", ";
+		}
+		for (int j = i * 2; j < i * 2 + 2; j++)
+		{
+			vertices.push_back(textCors[j]);
+		}
+		//std::cout << "\n";
+	}
+	glBindVertexArray(VAO);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLfloat), &vertices[0], GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLuint), &indices[0], GL_STATIC_DRAW);
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(2);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0); // Note that this is allowed, the call to glVertexAttribPointer registered VBO as the currently bound vertex buffer object so afterwards we can safely unbind
+
+	glBindVertexArray(0);
+}
+
 RawObject::~RawObject()
 {
 	delete shader;

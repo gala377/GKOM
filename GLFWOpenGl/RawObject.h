@@ -15,6 +15,7 @@ public:
 	RawObject();
 	RawObject(std::vector<GLfloat> verts, std::vector<GLuint> indics);
 	RawObject(std::vector<GLfloat> verts, std::vector<GLfloat> normals, std::vector<GLuint> indics);
+	RawObject(std::vector<GLfloat> verts, std::vector<GLfloat> normals, std::vector<GLfloat> textCors, std::vector<GLuint> indics);
 	~RawObject();
 	virtual void Draw();
 	void compileShaders(const char* vert, const char* frag);
