@@ -3,12 +3,12 @@
 #include <SOIL.h>
 
 TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length) :
-	TexturedCube(width, height, length, "shaders/defaultLight.vert", "materialMapped.frag", "textures/wood.png")
+	TexturedCube(width, height, length, "shaders/materialMapped.vert", "shaders/materialMapped.frag", "textures/wood.png")
 {
 }
 
 TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length, const char* texture) :
-		TexturedCube(width, height, length, "shaders/defaultLight.vert", "materialMapped.frag", texture)
+		TexturedCube(width, height, length, "shaders/materialMapped.vert", "shaders/materialMapped.frag", texture)
 {
 }
 
@@ -116,6 +116,8 @@ TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length, const 
 	20,21,22, 20,22,23
 })
 {
+	// Set texture units
+	compileShaders(vert, frag);
 	//Load Texture
 	glGenTextures(1, &diffuseMap);
 	int textWidth, textHeight;
@@ -131,9 +133,6 @@ TexturedCube::TexturedCube(GLfloat width, GLfloat height, GLfloat length, const 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST_MIPMAP_NEAREST);
 	glBindTexture(GL_TEXTURE_2D, 0);
-
-	// Set texture units
-	compileShaders(vert, frag);
 
 }
 

@@ -6,3 +6,4 @@
 #include "ColorCube.h"
 #include "SolidColorCyllinder.h"
 #include "GNCube.h"
+#include "TexturedCube.h"
