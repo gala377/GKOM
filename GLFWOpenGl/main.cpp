@@ -12,7 +12,7 @@ int main()
 {
 	Application* app = new Application();
 	app->Run();
-	char c;
-	std::cin >> c;
+	/*char c;
+	std::cin >> c;*/
 	return 0;
 }

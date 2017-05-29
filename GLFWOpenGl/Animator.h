@@ -11,9 +11,11 @@ public:
 		glm::vec3 translation;
 		glm::vec4 rotation;
 		GLfloat speed;
+		GLfloat wait;
 
 		glm::vec3 translatedBy;
 		GLfloat rotatedBy;
+		GLfloat waiting;
 		glm::vec3 originPosition;
 		glm::vec3 originRotation;
 	};

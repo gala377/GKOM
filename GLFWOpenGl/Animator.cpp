@@ -38,7 +38,7 @@ void Animator::update()
 {
 	if (currentFrame < 0)
 		return;
-	
+
 	GLfloat time = updateFrame();
 
 	currentFrameTime += time - lastFrameTime;
@@ -49,11 +49,20 @@ GLfloat Animator::updateFrame()
 {
 	bool frameFinished = false;
 	GLfloat currTime = glfwGetTime();
-	
+	GLfloat deltaTime = (currTime - lastFrameTime);
+
+	if (frames[currentFrame].waiting < frames[currentFrame].wait);
+	{
+		frames[currentFrame].waiting += deltaTime;
+		if (frames[currentFrame].waiting >= frames[currentFrame].wait)
+			nextFrame();
+
+		return currTime;
+	}
+
 	glm::vec3 translation = frames[currentFrame].translation;
 	glm::vec3 rotation = (frames[currentFrame].rotation.w)* glm::vec3(frames[currentFrame].rotation);
-	
-	GLfloat deltaTime = (currTime - lastFrameTime);
+
 	
 	GLfloat rotatedAngle = 0;
 	GLfloat speed = frames[currentFrame].speed;
@@ -130,6 +139,7 @@ void Animator::nextFrame()
 {
 	frames[currentFrame].rotatedBy = 0;
 	frames[currentFrame].translatedBy = glm::vec3(0.0);
+	frames[currentFrame].waiting = 0;
 	currentFrame++;
 	
 	if (currentFrame == frames.size())

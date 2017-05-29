@@ -88,9 +88,12 @@ void Application::Run()
 		lastFrame = currentFrame;
 
 		glfwPollEvents();
+		checkKeys();
 		mainCamera.do_movement();
 		mainCamera.Update();
+		
 		sawAnimator.update();
+		logAnimator1.update();
 
 		renderAll();
 
@@ -333,7 +336,7 @@ void Application::setUpAnimatedLog()
 	logAnimator1.addObject(log1);
 	logAnimator1.addObject(log2);
 
-	logAnimator1.addFrame({glm::vec3(0, 0, 10), glm::vec4(0.0), 7});
+	logAnimator1.addFrame({glm::vec3(0, -6.5, 0), glm::vec4(0.0), 0.5});
 }
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
