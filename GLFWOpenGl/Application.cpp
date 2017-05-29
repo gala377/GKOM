@@ -121,7 +121,7 @@ void Application::setUpScene()
 	setUpDetails();
 	setUpSaw();
 	setUpHouse();
-	//setUpLogs();
+	setUpLogs();
 	setUpAnimatedLog();
 
 	sawAnimator.start();
@@ -230,7 +230,7 @@ void Application::setUpHouse()
 void Application::setUpSaw()
 {
 	RawObject* saw = ModelFactory::gnCube(2.5, 0.3, 0.01, glm::vec3(0.8, 0.8, 0.8), glm::vec3(0.8, 0.8, 0.8), glm::vec3(0.8, 0.8, 0.8), glm::vec3(1, 1, 1), 256);
-	const GLfloat animStep = 0.1;
+	const GLfloat animStep = 0.15;
 
 	for (GLint i = -2; i < 3; i++)
 	{
