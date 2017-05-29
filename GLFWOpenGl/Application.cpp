@@ -97,6 +97,7 @@ void Application::renderAll()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	layout->Draw();
 }
+
 void Application::setUpScene()
 {
 	setUpLight();
@@ -138,10 +139,10 @@ void Application::setUpBase()
 
 void Application::setUpLight()
 {
-	Light::addNewLight(glm::vec3(10, 8, 7), glm::vec3(0, 0, 0));
-	Light::addNewLight(glm::vec3(1, 8, 4), glm::vec3(0, 0, 0));
-	Light::addNewLight(glm::vec3(-7, 8, -4), glm::vec3(0, 0, 0));
-	Light::addNewLight(glm::vec3(-8, 8, 9), glm::vec3(1, 1, 1));
+	Light::addNewLight(glm::vec3(0, 5, 20), glm::vec3(1, 1, 1), glm::vec3(1, 1, 1), glm::vec3(1, 1, 1));
+	Light::addNewLight(glm::vec3(10, 16, 10), glm::vec3(1, 1, 1), glm::vec3(1, 1, 1), glm::vec3(1, 1, 1));
+	Light::addNewLight(glm::vec3(-10, 16, -10), glm::vec3(1, 1, 1), glm::vec3(1, 1, 1), glm::vec3(1, 1, 1));
+	Light::addNewLight(glm::vec3(0, 16, 0), glm::vec3(1, 1, 1), glm::vec3(1, 1, 1), glm::vec3(1, 1, 1), 0.006, 0.006, 0.006);
 
 	for (auto light : Light::lights)
 		layout->addObject(light);
@@ -165,27 +166,46 @@ void Application::setUpHouse()
 	RawObject* wall1 = ModelFactory::texturedCube(15, 8, 0.4, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
 	RawObject* wall2 = ModelFactory::texturedCube(4, 8, 0.4, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
 	RawObject* wall3 = ModelFactory::texturedCube(4, 8, 0.4, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
-	RawObject* wall4 = ModelFactory::texturedCube(9, 4, 0.4, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
+	//RawObject* wall4 = ModelFactory::texturedCube(9, 4, 0.4, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
 	RawObject* wall5 = ModelFactory::texturedCube(0.4, 8, 20, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
 	RawObject* wall6 = ModelFactory::texturedCube(0.4, 8, 20, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
+
+	RawObject* roof1 = ModelFactory::texturedTriangle(15, 0.4, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
+	RawObject* roof2 = ModelFactory::texturedTriangle(15,0.4, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
+	
+	RawObject* roof3 = ModelFactory::texturedCube(11, 0.4, 20, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
+	RawObject* roof4 = ModelFactory::texturedCube(11, 0.4, 20, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
+	
+	roof1->translate(0, 16, -20);
+	roof2->translate(0, 16, 20);
+	roof3->translate(-7.5, 22,0);
+	roof4->translate(7.5, 22, 0);
 
 	wall1->translate(0, 8, -20);
 	
 	wall2->translate(13, 8, 20);
 	wall3->translate(-13, 8, 20);
-	wall4->translate(0, 12, 20);
+	//wall4->translate(0, 12, 20);
 	
 	wall5->translate(-15, 8, 0);
 	wall6->translate(15, 8, 0);
 	
 
+	roof3->rotate(glm::radians(45.0f), 0, 0, 1);
+	roof4->rotate(glm::radians(-45.0f), 0, 0, 1);
+
 
 	layout->addObject(wall1);
 	layout->addObject(wall2);
 	layout->addObject(wall3);
-	layout->addObject(wall4);
+	//layout->addObject(wall4);
 	layout->addObject(wall5);
 	layout->addObject(wall6);
+
+	layout->addObject(roof1);
+	layout->addObject(roof2);
+	layout->addObject(roof3);
+	layout->addObject(roof4);
 }
 
 void Application::setUpSaw()
