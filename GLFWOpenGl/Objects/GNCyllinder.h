@@ -9,7 +9,6 @@ class MaterialRawObject :
 {
 public:
 	using RawObject::RawObject;
-	MaterialRawObject();
 	~MaterialRawObject();
 
 	void setMaterial(glm::vec3 ambientColor, glm::vec3 diffColor, glm::vec3 specColor, GLfloat shiness)

@@ -2,10 +2,6 @@
 
 
 
-MaterialRawObject::MaterialRawObject()
-{
-}
-
 
 MaterialRawObject::~MaterialRawObject()
 {

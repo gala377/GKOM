@@ -192,8 +192,12 @@ void Application::setUpSaw()
 {
 	RawObject* saw = ModelFactory::gnCube(2.3, 0.3, 0.01, glm::vec3(0.8, 0.8, 0.8), glm::vec3(0.8, 0.8, 0.8), glm::vec3(0.8, 0.8, 0.8), glm::vec3(1, 1, 1), 256);
 
+	RawObject* zab = ModelFactory::gnTriangle(10, 10, glm::vec3(0.8, 0.8, 0.8), glm::vec3(0.8, 0.8, 0.8), glm::vec3(1, 1, 1), 256);
+	zab->translate(10, 10, 10);
+	
 	saw->translate(0, 8.5, 2);
 	layout->addObject(saw);
+	layout->addObject(zab);
 
 }
 
