@@ -1,11 +1,11 @@
 #include "TexturedCyllinder.h"
 #include <string>
 
-TexturedCyllinder::~TexturedCyllinder()
+TexturedRawObject::~TexturedRawObject()
 {
 }
 
-void TexturedCyllinder::setMaterial(const char * diffText, const char * specText, GLfloat shiness)
+void TexturedRawObject::setMaterial(const char * diffText, const char * specText, GLfloat shiness)
 {
 	compileShaders("shaders/materialMapped.vert", "shaders/materialMapped.frag");
 	//Load Texture
@@ -46,7 +46,7 @@ void TexturedCyllinder::setMaterial(const char * diffText, const char * specText
 	this->shiness = shiness;
 }
 
-void TexturedCyllinder::setUniforms()
+void TexturedRawObject::setUniforms()
 {
 	RawObject::setUniforms();
 

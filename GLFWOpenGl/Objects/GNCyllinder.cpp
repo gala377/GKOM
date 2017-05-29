@@ -2,11 +2,11 @@
 
 
 
-GNCyllinder::GNCyllinder()
+MaterialRawObject::MaterialRawObject()
 {
 }
 
 
-GNCyllinder::~GNCyllinder()
+MaterialRawObject::~MaterialRawObject()
 {
 }

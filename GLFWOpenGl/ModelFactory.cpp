@@ -336,7 +336,7 @@ RawObject * ModelFactory::gnCyllinder(GLfloat radius, GLfloat height, GLuint seg
 		points[1] = points[3];
 	}
 
-	GNCyllinder* cyllinder = new GNCyllinder(vertices, normals, indices);
+	MaterialRawObject* cyllinder = new MaterialRawObject(vertices, normals, indices);
 	cyllinder->setMaterial(ambientColor, diffColor, specColor, shiness);
 	cyllinder->compileShaders("shaders/defaultLight.vert", "shaders/material.frag");
 
@@ -479,7 +479,7 @@ RawObject * ModelFactory::texturedCyllinder(GLfloat radius, GLfloat height, GLui
 		currentUV += uvStep;
 	}
 
-	TexturedCyllinder* cyllinder = new TexturedCyllinder(vertices, normals,	uvis, indices);
+	TexturedRawObject* cyllinder = new TexturedRawObject(vertices, normals,	uvis, indices);
 	cyllinder->setMaterial(diffTexture, specTexture, shiness);
 
 	return cyllinder;

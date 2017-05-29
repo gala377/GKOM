@@ -4,13 +4,13 @@
 #include "Light.h"
 #include <string>
 
-class GNCyllinder :
+class MaterialRawObject :
 	public RawObject
 {
 public:
 	using RawObject::RawObject;
-	GNCyllinder();
-	~GNCyllinder();
+	MaterialRawObject();
+	~MaterialRawObject();
 
 	void setMaterial(glm::vec3 ambientColor, glm::vec3 diffColor, glm::vec3 specColor, GLfloat shiness)
 	{

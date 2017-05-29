@@ -4,12 +4,12 @@
 #include "..\Camera.h"
 #include <soil.h>
 
-class TexturedCyllinder :
+class TexturedRawObject :
 	public RawObject
 {
 public:
 	using RawObject::RawObject;
-	~TexturedCyllinder();
+	~TexturedRawObject();
 
 	void setMaterial(const char* diffText, const char* specText, GLfloat shiness);
 private:
