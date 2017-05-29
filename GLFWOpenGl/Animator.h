@@ -8,12 +8,14 @@ class Animator
 {
 public:
 	struct Frame {
-		glm::vec3 transaltion;
+		glm::vec3 translation;
 		glm::vec4 rotation;
 		GLfloat speed;
 
 		glm::vec3 translatedBy;
 		GLfloat rotatedBy;
+		glm::vec3 originPosition;
+		glm::vec3 originRotation;
 	};
 
 	bool loop = false;
@@ -38,5 +40,13 @@ private:
 	
 	
 	GLfloat updateFrame();
+
+	glm::vec3 remeaningTranslation();
+	glm::vec3 remeaningRotation();
+
+	bool positionOverShoot(glm::vec3 translation);
+	bool rotationOverShoot(GLfloat rotation);
+	
+	void nextFrame();
 };
 

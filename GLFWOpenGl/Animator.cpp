@@ -47,29 +47,37 @@ void Animator::update()
 
 GLfloat Animator::updateFrame()
 {
-	bool nextFrame = true;
-	const GLfloat epsilon = 0.001;
-
+	bool frameFinished = false;
 	GLfloat currTime = glfwGetTime();
+	
+	glm::vec3 translation = frames[currentFrame].translation;
+	glm::vec3 rotation = (frames[currentFrame].rotation.w)* glm::vec3(frames[currentFrame].rotation);
+	
+	GLfloat deltaTime = (currTime - lastFrameTime);
+	
+	GLfloat rotatedAngle = 0;
+	GLfloat speed = frames[currentFrame].speed;
+
 	std::cout << "Curr Time:\t" << currTime << "\n";
 	std::cout << "Curr Frame:\t" << currentFrame << "\n";
+	std::cout << "TranslationRemeaning:\t" << remeaningTranslation().x << ", " << remeaningTranslation().y << ", " << remeaningTranslation().z << "\n";
+	std::cout << "RotationRemeaning:\t" << remeaningTranslation().x << ", " << remeaningTranslation().y << ", " << remeaningTranslation().z << "\n";
 
-	glm::vec3 translation = frames[currentFrame].transaltion - frames[currentFrame].translatedBy;
-	glm::vec3 rotation = (frames[currentFrame].rotation.w - frames[currentFrame].rotatedBy)* glm::vec3(frames[currentFrame].rotation);
-	GLfloat deltaTime = (currTime - lastFrameTime);
-	GLfloat rotatedAngle = 0;
-
-	std::cout << "Translation:\t" << translation.x << ", " << translation.y << ", " << translation.z << "\n";
-	std::cout << "Rotation:\t" << rotation.x << ", " << rotation.y << ", " << rotation.z << "\n";
-
-	if (glm::length(translation) > epsilon || glm::length(rotation) > epsilon) 
-	{
-		nextFrame = false;
-		translation *= frames[currentFrame].speed * deltaTime;
-		rotation *= frames[currentFrame].speed * deltaTime;
-	}
-
+	translation *= speed * deltaTime;
+	rotation *= speed * deltaTime;
 	rotatedAngle = (frames[currentFrame].rotation.w - frames[currentFrame].rotatedBy)*frames[currentFrame].speed * deltaTime;;
+
+	if (positionOverShoot(translation))
+	{
+		translation = remeaningTranslation();
+		frameFinished = true;
+		std::cout << "Traslation Overshoot happened\n";
+	}
+	if (rotationOverShoot(rotatedAngle))
+	{
+		frameFinished = true;
+		rotation = remeaningRotation();
+	}
 
 	std::cout << "Translaring By:\t" << translation.x << ", " << translation.y << ", " << translation.z << "\n";
 	std::cout << "Rotating By:\t" << rotation.x << ", " << rotation.y << ", " << rotation.z << "\n\n";
@@ -85,14 +93,54 @@ GLfloat Animator::updateFrame()
 	frames[currentFrame].translatedBy += translation;
 	frames[currentFrame].rotatedBy += rotatedAngle;
 	
-	if (nextFrame)
-	{
-		frames[currentFrame].rotatedBy = 0;
-		frames[currentFrame].translatedBy = glm::vec3(0.0);
-		currentFrame++;
-	}
+	if (frameFinished)
+		nextFrame();
+
+	return currTime;
+}
+
+glm::vec3 Animator::remeaningTranslation()
+{
+	return frames[currentFrame].translation - frames[currentFrame].translatedBy;
+}
+
+glm::vec3 Animator::remeaningRotation()
+{
+	return (frames[currentFrame].rotation.w - frames[currentFrame].rotatedBy)* glm::vec3(frames[currentFrame].rotation);
+}
+
+bool Animator::positionOverShoot(glm::vec3 translation)
+{
+	glm::vec3 dst = frames[currentFrame].translation;
+	glm::vec3 position = frames[currentFrame].translatedBy;
+
+	GLfloat distToDest = glm::length(position - dst);
+	GLfloat distAfterTrans = glm::length(position + translation - dst);
+	
+	if (distAfterTrans > distToDest)
+		return true;
+	return false;
+}
+
+
+bool Animator::rotationOverShoot(GLfloat angle)
+{
+	GLfloat dst = frames[currentFrame].rotation.w * glm::length(glm::vec3(frames[currentFrame].rotation));
+	GLfloat position = frames[currentFrame].rotatedBy;
+
+	GLfloat distToDest = position - dst;
+	GLfloat distAfterTrans = position + angle - dst;
+	if (distAfterTrans > distToDest)
+		return true;
+	return false;
+}
+
+void Animator::nextFrame()
+{
+	frames[currentFrame].rotatedBy = 0;
+	frames[currentFrame].translatedBy = glm::vec3(0.0);
+	currentFrame++;
+	
 	if (currentFrame == frames.size())
 		currentFrame = loop ? 0 : -1;
-			
-	return currTime;
 }

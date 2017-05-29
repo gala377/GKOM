@@ -102,14 +102,14 @@ void Application::renderAll()
 void Application::setUpScene()
 {
 	setUpLight();
-	//setUpBase();
+	setUpBase();
 	setUpDetails();
 	setUpSaw();
 	setUpHouse();
 	//setUpLogs();
 
 	sawAnimator.addFrame(Animator::Frame{ glm::vec3(-10, 0, 0), glm::vec4(0), 1});
-	sawAnimator.addFrame(Animator::Frame{ glm::vec3(20, 0, 0), glm::vec4(0), 1});
+	sawAnimator.addFrame(Animator::Frame{ glm::vec3(10, 0, 0), glm::vec4(0), 1});
 	sawAnimator.loop = true;
 	sawAnimator.start();
 }
