@@ -84,6 +84,7 @@ void Application::Run()
 		glfwPollEvents();
 		mainCamera.do_movement();
 		mainCamera.Update();
+		sawAnimator.update();
 
 		renderAll();
 
@@ -101,13 +102,16 @@ void Application::renderAll()
 void Application::setUpScene()
 {
 	setUpLight();
-	setUpBase();
+	//setUpBase();
 	setUpDetails();
 	setUpSaw();
 	setUpHouse();
-	setUpLogs();
+	//setUpLogs();
 
-	sawAnimator.addFrame(Animator::Frame{});
+	sawAnimator.addFrame(Animator::Frame{ glm::vec3(-10, 0, 0), glm::vec4(0), 1});
+	sawAnimator.addFrame(Animator::Frame{ glm::vec3(20, 0, 0), glm::vec4(0), 1});
+	sawAnimator.loop = true;
+	sawAnimator.start();
 }
 
 void Application::setUpBase()

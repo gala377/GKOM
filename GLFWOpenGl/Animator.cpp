@@ -1,5 +1,5 @@
 #include "Animator.h"
-
+#include <iostream>
 
 
 Animator::Animator()
@@ -39,50 +39,58 @@ void Animator::update()
 	if (currentFrame < 0)
 		return;
 	
-	updateFrame();
+	GLfloat time = updateFrame();
 
-	currentFrameTime += glfwGetTime() - lastFrameTime;
-	lastFrameTime = glfwGetTime();
+	currentFrameTime += time - lastFrameTime;
+	lastFrameTime = time;
 }
 
 GLfloat Animator::updateFrame()
 {
 	bool nextFrame = true;
-	const GLfloat epsilon = 0.000001;
+	const GLfloat epsilon = 0.001;
+
 	GLfloat currTime = glfwGetTime();
+	std::cout << "Curr Time:\t" << currTime << "\n";
+	std::cout << "Curr Frame:\t" << currentFrame << "\n";
 
-	for (RawObject* el : objects)
+	glm::vec3 translation = frames[currentFrame].transaltion - frames[currentFrame].translatedBy;
+	glm::vec3 rotation = (frames[currentFrame].rotation.w - frames[currentFrame].rotatedBy)* glm::vec3(frames[currentFrame].rotation);
+	GLfloat deltaTime = (currTime - lastFrameTime);
+	GLfloat rotatedAngle = 0;
+
+	std::cout << "Translation:\t" << translation.x << ", " << translation.y << ", " << translation.z << "\n";
+	std::cout << "Rotation:\t" << rotation.x << ", " << rotation.y << ", " << rotation.z << "\n";
+
+	if (glm::length(translation) > epsilon || glm::length(rotation) > epsilon) 
 	{
-		glm::vec3 translation = frames[currentFrame].transaltion - frames[currentFrame].translatedBy;
-		glm::vec3 rotation = (frames[currentFrame].rotation.w - frames[currentFrame].rotatedBy)* glm::vec3(frames[currentFrame].rotation);
-
-		if (glm::length(translation) > epsilon || glm::length(rotation) > epsilon)
-			nextFrame = false;
-		else {
-			el->translate(translation.x, translation.y, translation.z);
-			el->rotate(rotation.x, 1, 0, 0);
-			el->rotate(rotation.y, 0, 1, 0);
-			el->rotate(rotation.z, 0, 0, 1);
-			continue;
-		}
-
-		GLfloat deltaTime = (currTime - lastFrameTime);
-		GLfloat rotatedAngle = (frames[currentFrame].rotation.w - frames[currentFrame].rotatedBy)*frames[currentFrame].speed * deltaTime;;
-		
+		nextFrame = false;
 		translation *= frames[currentFrame].speed * deltaTime;
 		rotation *= frames[currentFrame].speed * deltaTime;
+	}
 
+	rotatedAngle = (frames[currentFrame].rotation.w - frames[currentFrame].rotatedBy)*frames[currentFrame].speed * deltaTime;;
+
+	std::cout << "Translaring By:\t" << translation.x << ", " << translation.y << ", " << translation.z << "\n";
+	std::cout << "Rotating By:\t" << rotation.x << ", " << rotation.y << ", " << rotation.z << "\n\n";
+
+	for (RawObject* el : objects) 
+	{
 		el->translate(translation.x, translation.y, translation.z);
 		el->rotate(rotation.x, 1, 0, 0);
 		el->rotate(rotation.y, 0, 1, 0);
 		el->rotate(rotation.z, 0, 0, 1);
-
-		frames[currentFrame].translatedBy += translation;
-		frames[currentFrame].rotatedBy += rotatedAngle;
 	}
 
+	frames[currentFrame].translatedBy += translation;
+	frames[currentFrame].rotatedBy += rotatedAngle;
+	
 	if (nextFrame)
+	{
+		frames[currentFrame].rotatedBy = 0;
+		frames[currentFrame].translatedBy = glm::vec3(0.0);
 		currentFrame++;
+	}
 	if (currentFrame == frames.size())
 		currentFrame = loop ? 0 : -1;
 			
