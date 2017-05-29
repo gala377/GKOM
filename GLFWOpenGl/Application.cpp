@@ -48,6 +48,12 @@ Application::~Application()
 	delete layout;
 }
 
+void Application::checkKeys()
+{
+	if (keys[GLFW_KEY_P])
+		logAnimator1.start();
+}
+
 void Application::initGLFW()
 {
 #ifdef DEBUG
@@ -107,11 +113,10 @@ void Application::setUpScene()
 	setUpSaw();
 	setUpHouse();
 	//setUpLogs();
+	setUpAnimatedLog();
 
-	sawAnimator.addFrame(Animator::Frame{ glm::vec3(-10, 0, 0), glm::vec4(0), 1});
-	sawAnimator.addFrame(Animator::Frame{ glm::vec3(10, 0, 0), glm::vec4(0), 1});
-	sawAnimator.loop = true;
 	sawAnimator.start();
+
 }
 
 void Application::setUpBase()
@@ -215,23 +220,28 @@ void Application::setUpHouse()
 
 void Application::setUpSaw()
 {
-	RawObject* saw = ModelFactory::gnCube(2.3, 0.3, 0.01, glm::vec3(0.8, 0.8, 0.8), glm::vec3(0.8, 0.8, 0.8), glm::vec3(0.8, 0.8, 0.8), glm::vec3(1, 1, 1), 256);
+	RawObject* saw = ModelFactory::gnCube(2.5, 0.3, 0.01, glm::vec3(0.8, 0.8, 0.8), glm::vec3(0.8, 0.8, 0.8), glm::vec3(0.8, 0.8, 0.8), glm::vec3(1, 1, 1), 256);
+	const GLfloat animStep = 0.1;
 
 	for (GLint i = -2; i < 3; i++)
 	{
 		std::cout << "Iteration: " << i << "\n";
 		RawObject* zab = ModelFactory::gnTriangle(0.5, 0.01, glm::vec3(0.8, 0.8, 0.8), glm::vec3(0.8, 0.8, 0.8), glm::vec3(1, 1, 1), 256);
-		zab->translate(i, 8.25, 2);
+		zab->translate(i-animStep, 8.25, 2);
 		zab->rotate(glm::radians(180.0f), 0, 0, 1);
 		layout->addObject(zab);
 		sawAnimator.addObject(zab);
 	}
 
-	saw->translate(0, 8.5, 2);
+	saw->translate(-animStep, 8.5, 2);
+	saw->rotate(glm::radians(180.0f), 0, 1, 0);
 	layout->addObject(saw);
+	
 	sawAnimator.addObject(saw);
-
-
+	
+	sawAnimator.addFrame(Animator::Frame{ glm::vec3(2*animStep, 0, 0), glm::vec4(0), 20 });
+	sawAnimator.addFrame(Animator::Frame{ glm::vec3(-2*animStep , 0, 0), glm::vec4(0), 20 });
+	sawAnimator.loop = true;
 }
 
 void Application::setUpLogs()
@@ -304,6 +314,26 @@ void Application::setUpLogs()
 	layout->addObject(log14);
 	layout->addObject(log15);
 	layout->addObject(log16);
+}
+
+void Application::setUpAnimatedLog()
+{
+	RawObject* log1 = ModelFactory::texturedCyllinder(0.5, 1.5, 12, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+	RawObject* log2 = ModelFactory::texturedCyllinder(0.5, 1.5, 12, "textures/tree5.jpg", "textures/tree5.jpg", 8);
+
+	log1->translate(0, 1.7, -6);
+	log2->translate(0, 1.7, -3);
+
+	log1->rotate(glm::radians(-90.0), 1, 0, 0);
+	log2->rotate(glm::radians(-90.0), 1, 0, 0);
+
+	layout->addObject(log1);
+	layout->addObject(log2);
+
+	logAnimator1.addObject(log1);
+	logAnimator1.addObject(log2);
+
+	logAnimator1.addFrame({glm::vec3(0, 0, 10), glm::vec4(0.0), 7});
 }
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)

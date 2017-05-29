@@ -23,6 +23,10 @@ private:
 	MainWindow* screen;
 	MainLayout* layout;
 	Animator sawAnimator;
+	Animator logAnimator1;
+	Animator logAnimator2;
+
+	void checkKeys();
 
 	static GLfloat lastFrame;
 
@@ -38,6 +42,8 @@ private:
 	void setUpHouse();
 	void setUpSaw();
 	void setUpLogs();
+	void setUpAnimatedLog();
+
 
 };
 

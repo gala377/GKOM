@@ -58,11 +58,6 @@ GLfloat Animator::updateFrame()
 	GLfloat rotatedAngle = 0;
 	GLfloat speed = frames[currentFrame].speed;
 
-	std::cout << "Curr Time:\t" << currTime << "\n";
-	std::cout << "Curr Frame:\t" << currentFrame << "\n";
-	std::cout << "TranslationRemeaning:\t" << remeaningTranslation().x << ", " << remeaningTranslation().y << ", " << remeaningTranslation().z << "\n";
-	std::cout << "RotationRemeaning:\t" << remeaningTranslation().x << ", " << remeaningTranslation().y << ", " << remeaningTranslation().z << "\n";
-
 	translation *= speed * deltaTime;
 	rotation *= speed * deltaTime;
 	rotatedAngle = (frames[currentFrame].rotation.w - frames[currentFrame].rotatedBy)*frames[currentFrame].speed * deltaTime;;
@@ -71,16 +66,12 @@ GLfloat Animator::updateFrame()
 	{
 		translation = remeaningTranslation();
 		frameFinished = true;
-		std::cout << "Traslation Overshoot happened\n";
 	}
 	if (rotationOverShoot(rotatedAngle))
 	{
 		frameFinished = true;
 		rotation = remeaningRotation();
 	}
-
-	std::cout << "Translaring By:\t" << translation.x << ", " << translation.y << ", " << translation.z << "\n";
-	std::cout << "Rotating By:\t" << rotation.x << ", " << rotation.y << ", " << rotation.z << "\n\n";
 
 	for (RawObject* el : objects) 
 	{
