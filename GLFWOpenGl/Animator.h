@@ -12,12 +12,14 @@ public:
 		glm::vec4 rotation;
 		GLfloat speed;
 		GLfloat wait;
+		bool caller;
+		Animator* receiver;
 
 		glm::vec3 translatedBy;
 		GLfloat rotatedBy;
 		GLfloat waiting;
-		glm::vec3 originPosition;
-		glm::vec3 originRotation;
+		
+
 	};
 
 	bool loop = false;

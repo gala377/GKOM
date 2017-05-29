@@ -96,8 +96,10 @@ void Application::Run()
 		mainCamera.Update();
 		
 		sawAnimator.update();
-	//	sawAnimator2.update();
-	//	logAnimator1.update();
+		sawAnimator2.update();
+		logAnimator1.update();
+		logAnimator2.update();
+		logAnimator3.update();
 
 		renderAll();
 
@@ -243,6 +245,7 @@ void Application::setUpSaw()
 
 	saw->translate(-animStep, 8.5, 2);
 	saw->rotate(glm::radians(180.0f), 0, 1, 0);
+	saw->rotate(glm::radians(180.0f), 0, 0, 1);
 	layout->addObject(saw);
 	
 	sawAnimator.addObject(saw);
@@ -252,9 +255,11 @@ void Application::setUpSaw()
 	sawAnimator.addFrame(Animator::Frame{ glm::vec3(-2*animStep , 0, 0), glm::vec4(0), 20, 0 });
 	sawAnimator.loop = true;
 
-	sawAnimator2.addFrame(Animator::Frame{ glm::vec3( 0, -7, 0), glm::vec4(0), 4, 0});
-	sawAnimator2.addFrame(Animator::Frame{ glm::vec3(0.0), glm::vec4(0), 20, 5 });
-	sawAnimator2.addFrame(Animator::Frame{ glm::vec3(0, 7, 0), glm::vec4(0), 4, 0});
+	sawAnimator2.addFrame(Animator::Frame{ glm::vec3(0, 6, 0), glm::vec4(0), 0.5, 0 });
+	sawAnimator2.addFrame(Animator::Frame{ glm::vec3(0, 0.5f, 0), glm::vec4(0), 0.1f, 0});
+	sawAnimator2.addFrame(Animator::Frame{ glm::vec3(0.0), glm::vec4(0), 20, 3});
+	sawAnimator2.addFrame(Animator::Frame{ glm::vec3(0, -0.5f, 0), glm::vec4(0), 0.1f, 0});
+	sawAnimator2.addFrame(Animator::Frame{ glm::vec3(0, -6, 0), glm::vec4(0), 0.5, 0});
 
 }
 
@@ -347,7 +352,25 @@ void Application::setUpAnimatedLog()
 	logAnimator1.addObject(log1);
 	logAnimator1.addObject(log2);
 
-	logAnimator1.addFrame({glm::vec3(0, -6.5, 0), glm::vec4(0.0), 0.5});
+	logAnimator1.addFrame({ glm::vec3(0, -6.5, 0), glm::vec4(0.0), 0.5 });
+	logAnimator1.addFrame({ glm::vec3(0.0), glm::vec4(0.0), 0.5, 23 });
+	logAnimator1.addFrame({ glm::vec3(0.0), glm::vec4(0.0), 0, 0, true, &logAnimator2 });
+	logAnimator1.addFrame({ glm::vec3(0.0), glm::vec4(0.0), 0, 0, true, &logAnimator3 });
+
+	logAnimator2.addObject(log1);
+	logAnimator3.addObject(log2);
+
+	logAnimator2.addFrame({ glm::vec3(-0.5, 0.2, 0), glm::vec4(0.0), 5.0f });
+	logAnimator3.addFrame({ glm::vec3(0.5, -0.2, 0), glm::vec4(0.0), 5.0f });
+
+	logAnimator2.addFrame({ glm::vec3(0.0), glm::vec4(0.0), 0.0f, 3.5f });
+	logAnimator3.addFrame({ glm::vec3(0.0), glm::vec4(0.0), 0.0f, 3.5f });
+
+
+	//comeback 
+	logAnimator2.addFrame({ glm::vec3(0.5, 6.3, 0), glm::vec4(0.0), 1000.0f });
+	logAnimator3.addFrame({ glm::vec3(-0.5, 6.7, 0), glm::vec4(0.0), 1000.0f });
+
 }
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)

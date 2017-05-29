@@ -51,11 +51,16 @@ GLfloat Animator::updateFrame()
 	GLfloat currTime = glfwGetTime();
 	GLfloat deltaTime = (currTime - lastFrameTime);
 
+	if (frames[currentFrame].caller)
+	{
+		frames[currentFrame].receiver->start();
+		nextFrame();
+		return currTime;
+	}
 	wait(deltaTime);
 
 	glm::vec3 translation = frames[currentFrame].translation;
 	glm::vec3 rotation = (frames[currentFrame].rotation.w)* glm::vec3(frames[currentFrame].rotation);
-
 	
 	GLfloat rotatedAngle = 0;
 	GLfloat speed = frames[currentFrame].speed;
@@ -114,7 +119,6 @@ bool Animator::positionOverShoot(glm::vec3 translation)
 		return true;
 	return false;
 }
-
 
 bool Animator::rotationOverShoot(GLfloat angle)
 {

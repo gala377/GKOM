@@ -22,10 +22,12 @@ private:
 	static int VAOcount;
 	MainWindow* screen;
 	MainLayout* layout;
+
 	Animator sawAnimator;
 	Animator sawAnimator2;
 	Animator logAnimator1;
 	Animator logAnimator2;
+	Animator logAnimator3;
 
 	void checkKeys();
 
