@@ -11,6 +11,7 @@ RawObject::RawObject()
 
 	trans = glm::mat4(1.0);
 	position = glm::vec3(0, 0, 0);
+	rotation = glm::vec3(0, 0, 0);
 }
 
 RawObject::RawObject(std::vector<GLfloat> verts, std::vector<GLuint> indics) : RawObject()
@@ -147,6 +148,7 @@ void RawObject::translate(GLfloat x, GLfloat y, GLfloat z)
 void RawObject::rotate(GLfloat arc, GLfloat x, GLfloat y, GLfloat z)
 {
 	trans = glm::rotate(trans, arc, glm::vec3(x, y, z));
+	rotation += arc*glm::vec3(x, y, z);
 }
 
 void RawObject::scale(GLfloat x, GLfloat y, GLfloat z)
@@ -157,6 +159,11 @@ void RawObject::scale(GLfloat x, GLfloat y, GLfloat z)
 glm::vec3 RawObject::getPosition()
 {
 	return position;
+}
+
+glm::vec3 RawObject::getRotation()
+{
+	return rotation;
 }
 
 void RawObject::setUniforms()

@@ -24,6 +24,7 @@ public:
 	void scale(GLfloat x, GLfloat y, GLfloat z);
 
 	glm::vec3 getPosition();
+	glm::vec3 getRotation();
 protected:
 	glm::mat4 trans;
 	std::vector<GLfloat> vertices;
@@ -34,6 +35,7 @@ protected:
 	ShaderProgram* shader;
 	
 	glm::vec3 position;
+	glm::vec3 rotation;
 
 	virtual void setUniforms();
 
