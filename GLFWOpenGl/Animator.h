@@ -7,10 +7,12 @@ class Animator
 {
 public:
 	struct Frame {
-		glm::vec3 transaltion;
+		glm::vec3 position;
 		glm::vec4 rotation;
-		GLfloat time;
+		GLfloat speed;
 	};
+
+	bool loop = false;
 
 	Animator();
 	~Animator();
@@ -26,8 +28,11 @@ private:
 	GLint currentFrame = -1;
 	GLfloat currentFrameTime = 0.0f;
 	GLfloat lastFrameTime;
+	
 	std::vector<RawObject*> objects;
 	std::vector<Frame> frames;
-	void updateFrame();
+	
+	
+	GLfloat updateFrame();
 };
 

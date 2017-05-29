@@ -36,14 +36,6 @@ void Animator::start()
 
 void Animator::update()
 {
-	if (currentFrameTime >= frames[currentFrame].time)
-	{
-		currentFrame++;
-		currentFrameTime = 0;
-		if (currentFrame == frames.size())
-			currentFrame = -1;
-	}
-
 	if (currentFrame < 0)
 		return;
 	
@@ -53,12 +45,38 @@ void Animator::update()
 	lastFrameTime = glfwGetTime();
 }
 
-void Animator::updateFrame()
+GLfloat Animator::updateFrame()
 {
+	bool nextFrame = true;
+	const GLfloat epsilon = 0.000001;
+	GLfloat currTime = glfwGetTime();
+
 	for (RawObject* el : objects)
 	{
-		glm::vec3 postion = el->getPosition();
-		glm::vec3 rotation = el->
+		glm::vec3 translation = frames[currentFrame].position - el->getPosition();
+		glm::vec3 rotation = frames[currentFrame].rotation.w * glm::vec3(frames[currentFrame].rotation) - el->getRotation();
 
+		if (glm::length(translation) > epsilon || glm::length(rotation) > epsilon)
+			nextFrame = false;
+		else {
+			
+		}
+
+		GLfloat deltaTime = (currTime - lastFrameTime);
+
+		translation *= frames[currentFrame].speed * deltaTime;
+		rotation *= frames[currentFrame].speed * deltaTime;
+
+		el->translate(translation.x, translation.y, translation.z);
+		el->rotate(rotation.x, 1, 0, 0);
+		el->rotate(rotation.y, 0, 1, 0);
+		el->rotate(rotation.z, 0, 0, 1);
 	}
+
+	if (nextFrame)
+		currentFrame++;
+	if (currentFrame == frames.size())
+		currentFrame = loop ? 0 : -1;
+			
+	return currTime;
 }
