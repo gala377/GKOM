@@ -53,17 +53,22 @@ GLfloat Animator::updateFrame()
 
 	for (RawObject* el : objects)
 	{
-		glm::vec3 translation = frames[currentFrame].position - el->getPosition();
-		glm::vec3 rotation = frames[currentFrame].rotation.w * glm::vec3(frames[currentFrame].rotation) - el->getRotation();
+		glm::vec3 translation = frames[currentFrame].transaltion - frames[currentFrame].translatedBy;
+		glm::vec3 rotation = (frames[currentFrame].rotation.w - frames[currentFrame].rotatedBy)* glm::vec3(frames[currentFrame].rotation);
 
 		if (glm::length(translation) > epsilon || glm::length(rotation) > epsilon)
 			nextFrame = false;
 		else {
-			
+			el->translate(translation.x, translation.y, translation.z);
+			el->rotate(rotation.x, 1, 0, 0);
+			el->rotate(rotation.y, 0, 1, 0);
+			el->rotate(rotation.z, 0, 0, 1);
+			continue;
 		}
 
 		GLfloat deltaTime = (currTime - lastFrameTime);
-
+		GLfloat rotatedAngle = (frames[currentFrame].rotation.w - frames[currentFrame].rotatedBy)*frames[currentFrame].speed * deltaTime;;
+		
 		translation *= frames[currentFrame].speed * deltaTime;
 		rotation *= frames[currentFrame].speed * deltaTime;
 
@@ -71,6 +76,9 @@ GLfloat Animator::updateFrame()
 		el->rotate(rotation.x, 1, 0, 0);
 		el->rotate(rotation.y, 0, 1, 0);
 		el->rotate(rotation.z, 0, 0, 1);
+
+		frames[currentFrame].translatedBy += translation;
+		frames[currentFrame].rotatedBy += rotatedAngle;
 	}
 
 	if (nextFrame)

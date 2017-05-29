@@ -107,6 +107,7 @@ void Application::setUpScene()
 	setUpHouse();
 	setUpLogs();
 
+	sawAnimator.addFrame(Animator::Frame{});
 }
 
 void Application::setUpBase()
@@ -219,10 +220,12 @@ void Application::setUpSaw()
 		zab->translate(i, 8.25, 2);
 		zab->rotate(glm::radians(180.0f), 0, 0, 1);
 		layout->addObject(zab);
+		sawAnimator.addObject(zab);
 	}
 
 	saw->translate(0, 8.5, 2);
 	layout->addObject(saw);
+	sawAnimator.addObject(saw);
 
 
 }

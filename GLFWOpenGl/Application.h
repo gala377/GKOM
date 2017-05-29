@@ -4,6 +4,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "MainLayout.h"
+#include "Animator.h"
 
 #define WIDTH 1280
 #define HEIGHT 720
@@ -21,6 +22,7 @@ private:
 	static int VAOcount;
 	MainWindow* screen;
 	MainLayout* layout;
+	Animator sawAnimator;
 
 	static GLfloat lastFrame;
 

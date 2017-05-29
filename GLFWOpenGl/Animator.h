@@ -2,14 +2,18 @@
 #include <vector>
 #include "RawObject.h"
 #include <GLFW\glfw3.h>
+#include <math.h>
 
 class Animator
 {
 public:
 	struct Frame {
-		glm::vec3 position;
+		glm::vec3 transaltion;
 		glm::vec4 rotation;
 		GLfloat speed;
+
+		glm::vec3 translatedBy;
+		GLfloat rotatedBy;
 	};
 
 	bool loop = false;
