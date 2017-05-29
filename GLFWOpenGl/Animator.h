@@ -50,5 +50,7 @@ private:
 	bool rotationOverShoot(GLfloat rotation);
 	
 	void nextFrame();
+
+	void wait(GLfloat deltaTime);
 };
 

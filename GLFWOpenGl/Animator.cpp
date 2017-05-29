@@ -51,14 +51,7 @@ GLfloat Animator::updateFrame()
 	GLfloat currTime = glfwGetTime();
 	GLfloat deltaTime = (currTime - lastFrameTime);
 
-	if (frames[currentFrame].waiting < frames[currentFrame].wait);
-	{
-		frames[currentFrame].waiting += deltaTime;
-		if (frames[currentFrame].waiting >= frames[currentFrame].wait)
-			nextFrame();
-
-		return currTime;
-	}
+	wait(deltaTime);
 
 	glm::vec3 translation = frames[currentFrame].translation;
 	glm::vec3 rotation = (frames[currentFrame].rotation.w)* glm::vec3(frames[currentFrame].rotation);
@@ -144,4 +137,15 @@ void Animator::nextFrame()
 	
 	if (currentFrame == frames.size())
 		currentFrame = loop ? 0 : -1;
+}
+
+void Animator::wait(GLfloat deltaTime)
+{
+	if (frames[currentFrame].waiting  < frames[currentFrame].wait)
+	{
+		std::cout << "Waiting: " << frames[currentFrame].waiting << " Wait: " << frames[currentFrame].wait << "\n";
+		frames[currentFrame].waiting += deltaTime;
+		if (frames[currentFrame].waiting >= frames[currentFrame].wait)
+			nextFrame();
+	}
 }

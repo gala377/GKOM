@@ -51,7 +51,10 @@ Application::~Application()
 void Application::checkKeys()
 {
 	if (keys[GLFW_KEY_P])
+	{
 		logAnimator1.start();
+		sawAnimator2.start();
+	}
 }
 
 void Application::initGLFW()
@@ -93,7 +96,8 @@ void Application::Run()
 		mainCamera.Update();
 		
 		sawAnimator.update();
-		logAnimator1.update();
+	//	sawAnimator2.update();
+	//	logAnimator1.update();
 
 		renderAll();
 
@@ -229,11 +233,12 @@ void Application::setUpSaw()
 	for (GLint i = -2; i < 3; i++)
 	{
 		std::cout << "Iteration: " << i << "\n";
-		RawObject* zab = ModelFactory::gnTriangle(0.5, 0.01, glm::vec3(0.8, 0.8, 0.8), glm::vec3(0.8, 0.8, 0.8), glm::vec3(1, 1, 1), 256);
-		zab->translate(i-animStep, 8.25, 2);
-		zab->rotate(glm::radians(180.0f), 0, 0, 1);
-		layout->addObject(zab);
-		sawAnimator.addObject(zab);
+		RawObject* edge = ModelFactory::gnTriangle(0.5, 0.01, glm::vec3(0.8, 0.8, 0.8), glm::vec3(0.8, 0.8, 0.8), glm::vec3(1, 1, 1), 256);
+		edge->translate(i-animStep, 8.25, 2);
+		edge->rotate(glm::radians(180.0f), 0, 0, 1);
+		layout->addObject(edge);
+		sawAnimator.addObject(edge);
+		sawAnimator2.addObject(edge);
 	}
 
 	saw->translate(-animStep, 8.5, 2);
@@ -241,10 +246,16 @@ void Application::setUpSaw()
 	layout->addObject(saw);
 	
 	sawAnimator.addObject(saw);
+	sawAnimator2.addObject(saw);
 	
-	sawAnimator.addFrame(Animator::Frame{ glm::vec3(2*animStep, 0, 0), glm::vec4(0), 20 });
-	sawAnimator.addFrame(Animator::Frame{ glm::vec3(-2*animStep , 0, 0), glm::vec4(0), 20 });
+	sawAnimator.addFrame(Animator::Frame{ glm::vec3(2*animStep, 0, 0), glm::vec4(0), 20, 0 });
+	sawAnimator.addFrame(Animator::Frame{ glm::vec3(-2*animStep , 0, 0), glm::vec4(0), 20, 0 });
 	sawAnimator.loop = true;
+
+	sawAnimator2.addFrame(Animator::Frame{ glm::vec3( 0, -7, 0), glm::vec4(0), 4, 0});
+	sawAnimator2.addFrame(Animator::Frame{ glm::vec3(0.0), glm::vec4(0), 20, 5 });
+	sawAnimator2.addFrame(Animator::Frame{ glm::vec3(0, 7, 0), glm::vec4(0), 4, 0});
+
 }
 
 void Application::setUpLogs()
