@@ -26,6 +26,7 @@ public:
 	static RawObject* texturedCyllinder(GLfloat radius, GLfloat height, GLuint segments, const char* diffTexture, const char* specTexture, GLfloat shiness);
 
 	static RawObject* gnTriangle(GLfloat area, GLfloat lenght, glm::vec3 ambientColor, glm::vec3 diffColor, glm::vec3 specColor, GLfloat shiness);
+	static RawObject* texturedTriangle(GLfloat area, GLfloat lenght, const char* diffTexture, const char* specTexture, GLfloat shiness);
 
 private:
 	ModelFactory();

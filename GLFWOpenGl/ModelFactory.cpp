@@ -567,3 +567,110 @@ RawObject * ModelFactory::gnTriangle(GLfloat area, GLfloat lenght, glm::vec3 amb
 
 
 }
+
+RawObject * ModelFactory::texturedTriangle(GLfloat area, GLfloat lenght, const char * diffTexture, const char * specTexture, GLfloat shiness)
+{
+	glm::vec4 normal = glm::vec4(1, 0, 0, 1);
+	glm::mat4 rotation = glm::mat4(1.0f);
+	rotation = glm::rotate(rotation, glm::radians(-45.0f), glm::vec3(0, 1, 0));
+	normal = rotation * normal;
+
+	std::vector<GLfloat> vertices = {
+
+		//fornt
+		-1 * area, 0, -lenght,
+		1 * area, 0, -lenght,
+		0, 1 * area, -lenght,
+		//back
+		-1 * area, 0, lenght,
+		1 * area, 0, lenght,
+		0, 1 * area, lenght,
+		//sides
+		-1 * area, 0, -lenght,
+		1 * area, 0, -lenght,
+		-1 * area, 0, lenght,
+		1 * area, 0, lenght,
+
+		1 * area, 0, -lenght,
+		0, 1 * area, -lenght,
+		1 * area, 0, lenght,
+		0, 1 * area, lenght,
+
+		-1 * area, 0, -lenght,
+		0, 1 * area, -lenght,
+		-1 * area, 0, lenght,
+		0, 1 * area, lenght
+	};
+	std::vector<GLfloat> normals = {
+		0, 0, -1,
+		0, 0, -1,
+		0, 0, -1,
+
+		0, 0, 1,
+		0, 0, 1,
+		0, 0, 1,
+
+		0, -1, 0,
+		0, -1, 0,
+		0, -1, 0,
+		0, -1, 0,
+
+		normal.x, normal.y, 0,
+		normal.x, normal.y, 0,
+		normal.x, normal.y, 0,
+		normal.x, normal.y, 0,
+
+
+		-normal.x, normal.y, 0,
+		-normal.x, normal.y, 0,
+		-normal.x, normal.y, 0,
+		-normal.x, normal.y, 0
+
+	};
+
+	std::vector<GLuint> indices{
+		0, 1, 2,
+		3, 4, 5,
+
+		6, 7, 8,
+		7, 8, 9,
+
+		10, 11, 12,
+		11, 12, 13,
+
+		14, 15, 16,
+		15, 16, 17
+	};
+
+	std::vector<GLfloat> uvis = {
+		0, 0,
+		1, 0,
+		0.5, 1,
+
+		0, 0,
+		1, 0,
+		0.5, 1,
+
+		0, 0,
+		0, 1,
+		1, 0,
+		1, 1,
+
+		0, 0,
+		0, 1,
+		1, 0,
+		1, 1,
+
+		0, 0,
+		0, 1,
+		1, 0,
+		1, 1
+	};
+
+	TexturedRawObject* triangle = new TexturedRawObject(vertices, normals, uvis, indices);
+	triangle->setMaterial(diffTexture, specTexture, shiness);
+
+	return triangle;
+
+
+}
