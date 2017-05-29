@@ -192,12 +192,18 @@ void Application::setUpSaw()
 {
 	RawObject* saw = ModelFactory::gnCube(2.3, 0.3, 0.01, glm::vec3(0.8, 0.8, 0.8), glm::vec3(0.8, 0.8, 0.8), glm::vec3(0.8, 0.8, 0.8), glm::vec3(1, 1, 1), 256);
 
-	RawObject* zab = ModelFactory::gnTriangle(10, 10, glm::vec3(0.8, 0.8, 0.8), glm::vec3(0.8, 0.8, 0.8), glm::vec3(1, 1, 1), 256);
-	zab->translate(10, 10, 10);
-	
+	for (GLint i = -2; i < 3; i++)
+	{
+		std::cout << "Iteration: " << i << "\n";
+		RawObject* zab = ModelFactory::gnTriangle(0.5, 0.01, glm::vec3(0.8, 0.8, 0.8), glm::vec3(0.8, 0.8, 0.8), glm::vec3(1, 1, 1), 256);
+		zab->translate(i, 8.25, 2);
+		zab->rotate(glm::radians(180.0f), 0, 0, 1);
+		layout->addObject(zab);
+	}
+
 	saw->translate(0, 8.5, 2);
 	layout->addObject(saw);
-	layout->addObject(zab);
+
 
 }
 

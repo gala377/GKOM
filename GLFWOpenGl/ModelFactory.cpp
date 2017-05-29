@@ -519,13 +519,13 @@ RawObject * ModelFactory::gnTriangle(GLfloat area, GLfloat lenght, glm::vec3 amb
 			0, 1 * area, lenght
 	};
 	std::vector<GLfloat> normals = {
-		0, 0, 1,
-		0, 0, 1,
-		0, 0, 1,
+		0, 0, -1,
+		0, 0, -1,
+		0, 0, -1,
 
-		0, 0, -1,
-		0, 0, -1,
-		0, 0, -1,
+		0, 0, 1,
+		0, 0, 1,
+		0, 0, 1,
 
 		0, -1, 0,
 		0, -1, 0,
