@@ -189,6 +189,9 @@ void Application::setUpHouse()
 	RawObject* wall5 = ModelFactory::texturedCube(0.4, 8, 20, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
 	RawObject* wall6 = ModelFactory::texturedCube(0.4, 8, 20, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
 
+	RawObject* door1 = ModelFactory::texturedCube(4, 8, 0.4, "textures/wood.png", "textures/woodSpecular.png", 16);
+	RawObject* door2 = ModelFactory::texturedCube(4, 8, 0.4, "textures/wood.png", "textures/woodSpecular.png", 16);
+
 	RawObject* roof1 = ModelFactory::texturedTriangle(15, 0.4, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
 	RawObject* roof2 = ModelFactory::texturedTriangle(15,0.4, "textures/woodWall.jpg", "textures/woodWall.jpg", 16);
 	
@@ -209,9 +212,14 @@ void Application::setUpHouse()
 	wall5->translate(-15, 8, 0);
 	wall6->translate(15, 8, 0);
 	
+	door1->translate(-5.3,8,19);
+	door2->translate(5.3,8,19);
 
 	roof3->rotate(glm::radians(45.0f), 0, 0, 1);
 	roof4->rotate(glm::radians(-45.0f), 0, 0, 1);
+
+	door1->rotate(glm::radians(15.0f), 0, 1, 0);
+	door2->rotate(glm::radians(-15.0f), 0, 1, 0);
 
 
 	layout->addObject(wall1);
@@ -225,6 +233,9 @@ void Application::setUpHouse()
 	layout->addObject(roof2);
 	layout->addObject(roof3);
 	layout->addObject(roof4);
+
+	layout->addObject(door1);
+	layout->addObject(door2);
 }
 
 void Application::setUpSaw()
